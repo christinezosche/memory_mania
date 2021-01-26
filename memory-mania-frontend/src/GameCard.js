@@ -15,6 +15,9 @@ class GameCard extends Component {
 
     renderCard = () => {
         if (this.props.hasBeenMatched(this.props.imageId)) {
+            this.setState({
+                hasBeenClicked: false
+            })
             return <CardBlank />
         }
         else if (this.state.hasBeenClicked === false) {
