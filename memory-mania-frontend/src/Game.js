@@ -36,12 +36,12 @@ class Game extends Component {
 
     render () {
         
-        //let randomizedArray = this.shuffle(this.state.images)
+        let randomizedArray = this.shuffle(this.state.images)
 
         return (
         <div className="gameContainer">
                 {/* {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)} */}
-                {this.state.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
+                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
         </div>
         )
     }
