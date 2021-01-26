@@ -20,7 +20,7 @@ code {
 
  .game-container {
   width: 1000px;
-  height: 500px;
+  height: 625px;
   display: flex; 
   flex-wrap: wrap;
 }
