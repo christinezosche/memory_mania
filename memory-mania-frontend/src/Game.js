@@ -34,13 +34,19 @@ class Game extends Component {
         return array;
       }
 
+    addToCurrentPair = (imageId) => {
+        this.setState({
+            currentPair: [...this.state.currentPair, imageId]
+        })
+    }
+
     render () {
-        
+        debugger
         let randomizedArray = this.shuffle(this.state.images)
 
         return (
         <div className="game-container">
-                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
+                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair}/>)}
         </div>
         )
     }

@@ -23,6 +23,7 @@ class GameCard extends Component {
         this.setState({
                 hasBeenClicked: true
             });
+        this.props.addToCurrentPair(this.props.imageId)
     }
 
     render () {
