@@ -4,14 +4,35 @@ import CardBack from './CardBack'
 
 class GameCard extends Component {
 
-    render () {
-    return (
-        <div className="game-card">
-            <CardFront imageUrl={this.props.imageUrl} />
-            <CardBack />
-        </div>
+    constructor() {
+        super()
 
-    )
+        this.state = {
+            hasBeenClicked = false
+        }
+    }
+
+    renderCard = () => {
+    if (this.state.hasBeenClicked = false) {
+        return <CardBack />;
+        }
+        return <CardFront imageUrl={this.props.imageUrl} />
+    }
+
+    toggleClick = () => {
+        if (this.state.hasBeenClicked = false) {
+            this.setState({
+                hasBeenClicked = true
+            });
+        }
+    }
+
+    render () {
+        return (
+            <div className="game-card" onClick={() => this.toggleClick()}>
+                {this.renderCard()}
+            </div>
+        )
     }
 
 }
