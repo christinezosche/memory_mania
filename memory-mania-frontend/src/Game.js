@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GameCard from './GameCard'
 
 class Game extends Component {
 
@@ -32,10 +33,11 @@ class Game extends Component {
       }
 
     render () {
-        
+        let randomizedArray = this.shuffle(this.images)
+
         return (
         <div className="gameContainer">
-                {this.images.map((image) => <GameCard imageId={image.id}/>)}
+                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
         </div>
         )
     }
