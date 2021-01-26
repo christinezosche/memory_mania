@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root, #gameContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gameContainer {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 650px;
+  height: 650px;
+}
+
+.game-card {
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.game-card:hover {
+  transform: scale(1.05)
+}
+
+.game-card:active {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+
+
+.card-front, .card-back {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  backface-visibility: hidden;
+  background-size: cover;
+}
+
+.card-front {
+  filter: grayscale(100%);
+  transition-duration: 1s;
+  box-shadow: 5px 5px 10px;
+  box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
+  
+}
+
+.card-front:hover {
+  filter: grayscale(0%);
+}
+
+.card-back {
+  /* background-image: url("./assets/patterns/cork-wallet.png"); */
+  transform: rotateY(180deg);
+  box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
