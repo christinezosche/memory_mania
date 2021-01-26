@@ -38,15 +38,37 @@ class Game extends Component {
         this.setState({
             currentPair: [...this.state.currentPair, imageId]
         })
+        if (this.state.currentPair.length === 2) {
+            if (this.state.currentPair[0] === this.state.currentPair[1]) {
+                this.setState({
+                    currentPair: [],
+                    completedPairs: [...this.state.completedPairs, imageId]
+                })
+            }
+            else {
+                this.setState({
+                    currentPair: []
+                })
+            }
+        }
+    }
+
+    hasBeenMatched = (imageId) => {
+        if (this.state.completedPairs.filter(id => id === imageId).length === 0) {
+            return false
+        }
+        else {
+            return true
+        }
     }
 
     render () {
-        debugger
-        let randomizedArray = this.shuffle(this.state.images)
+        let pairedArray = [...this.state.images, ...this.state.images]
+        let randomizedArray = this.shuffle(pairedArray)
 
         return (
         <div className="game-container">
-                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair}/>)}
+                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} hasBeenMatched={this.hasBeenMatched}/>)}
         </div>
         )
     }
