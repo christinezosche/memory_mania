@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
+import CardFront from './CardFront'
+import CardBack from './CardBack'
 
-const GameCard = (props) => {
+class GameCard extends Component {
 
+    render () {
     return (
+        <div className="game-card">
+            <CardFront imageUrl={this.props.imageUrl} />
+            <CardBack />
+        </div>
 
-        
     )
+    }
 
 }
 
