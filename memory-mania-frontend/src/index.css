@@ -52,7 +52,7 @@ code {
 }
 
 .card-front {
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   transition-duration: 1s;
   box-shadow: 5px 5px 10px;
   box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
@@ -65,11 +65,7 @@ code {
 
 .card-back {
   /* background-image: url("./assets/patterns/cork-wallet.png"); */
-  transform: rotateY(180deg);
+
+  box-shadow: 5px 5px 10px;
   box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
 }

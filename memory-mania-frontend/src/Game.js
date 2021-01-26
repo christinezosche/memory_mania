@@ -7,11 +7,11 @@ class Game extends Component {
         super()
 
         this.state = {
-            images = [{url: 'https://www.americanhumane.org/app/uploads/2016/08/animals-cats-cute-45170-min.jpg', id: '1'}, 
+            images: [{url: 'https://www.americanhumane.org/app/uploads/2016/08/animals-cats-cute-45170-min.jpg', id: '1'}, 
             {url: 'https://www.port.ac.uk/-/media/images/news-events-and-blogs/news/2020/october/cat-narrow-eyes-400x600.jpg', id: '2'}, 
             {url: 'https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg', id: '3'}],
-            currentPair = [],
-            completedPairs = []
+            currentPair: [],
+            completedPairs: []
         }
     }
 
@@ -35,11 +35,13 @@ class Game extends Component {
       }
 
     render () {
-        let randomizedArray = this.shuffle(this.images)
+        
+        //let randomizedArray = this.shuffle(this.state.images)
 
         return (
         <div className="gameContainer">
-                {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
+                {/* {randomizedArray.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)} */}
+                {this.state.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id}/>)}
         </div>
         )
     }

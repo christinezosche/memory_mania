@@ -8,23 +8,21 @@ class GameCard extends Component {
         super()
 
         this.state = {
-            hasBeenClicked = false
+            hasBeenClicked: false
         }
     }
 
     renderCard = () => {
-    if (this.state.hasBeenClicked = false) {
-        return <CardBack />;
+    if (this.state.hasBeenClicked === false) {
+        return <CardBack />
         }
         return <CardFront imageUrl={this.props.imageUrl} />
     }
 
     toggleClick = () => {
-        if (this.state.hasBeenClicked = false) {
-            this.setState({
-                hasBeenClicked = true
+        this.setState({
+                hasBeenClicked: true
             });
-        }
     }
 
     render () {
