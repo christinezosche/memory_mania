@@ -37,7 +37,6 @@ class Game extends Component {
                     completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
                     newTurn: true
                 })
-    
             }
             else {
                 this.setState({
@@ -53,16 +52,40 @@ class Game extends Component {
                 newTurn: false
             })
         }
+       // this.checkForGameOver()
+    }
+
+    checkForGameOver = () => {
+        if (this.state.completedPairs.length === 6) {
+            //this.setDelay()
+            this.setState({
+                gameComplete: true
+            })
+        }
+    }
+
+    setDelay = () => {
+        setTimeout(() => { this.setState({
+            gameComplete: true
+        })}, 2000);
+    }
+
+    renderGame = () => {
+        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} checkForPairs={this.checkForPairs} checkForGameOver={this.checkForGameOver} hasBeenMatched={this.hasBeenMatched} newTurn={this.state.newTurn} />)
+    }
+
+    renderEnd = () => {
+        return <h1>Game Over!</h1>
     }
 
     render () {
-
-        return (
-        <div className="game-container">
-                {this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} newTurn={this.state.newTurn} />)}
-        </div>
-        )
-
+        //this.checkForGameOver()
+        if (this.state.completedPairs.length === 6) {
+            return <div className="game-container">{this.renderEnd()}</div>        
+        }
+        else {
+            return <div className="game-container">{this.renderGame()}</div>
+        }
     }
 
 

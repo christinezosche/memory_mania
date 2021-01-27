@@ -65,6 +65,7 @@ class GameCard extends Component {
 
     render () {
         this.props.checkForPairs()
+        //this.props.checkForGameOver()
         if (this.props.newTurn === true) {
             return <div>{this.renderWithDelay()}</div>
         }
