@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import GameCard from './GameCard'
 import GameStarter from './GameStarter'
 import Timer from './Timer'
+import uuid from 'uuid';
+import { connect } from 'react-redux';
+import { addGame } from '../actions/games';
 
 class Game extends Component {
 
@@ -9,17 +12,23 @@ class Game extends Component {
         super()
 
         this.state = {
+            name: '',
+            time: '',
+            id: '',
             currentPair: [],
             completedPairs: [],
             newGame: true,
             newTurn: false,
-            gameComplete: false
+            gameComplete: false,
+            disableGame: false
         }
     }
 
     startGame = () => {
+        let newID = uuid();
         this.setState({
-            newGame: false
+            newGame: false,
+            id: newID
         })
     }
 
@@ -67,7 +76,25 @@ class Game extends Component {
     checkForGameOver = () => {
         if (this.state.completedPairs.length === 6) {
             this.setDelay()
+            this.dispatchGame()
         }
+        
+    }
+
+    setGameTime = (time) => {
+        this.setState({
+            time: time,
+            gameComplete: false,
+            disableGame: true
+        })
+    }
+
+    dispatchGame = () => {
+        this.props.addGame(
+            {name: this.state.name,
+            id: this.state.id,
+            time: this.state.time }
+        )
     }
 
     setDelay = () => {
@@ -85,7 +112,7 @@ class Game extends Component {
     }
 
     renderGame = () => {
-        if (this.state.gameComplete === true) {
+        if (this.state.disableGame === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
         else {
@@ -100,7 +127,7 @@ class Game extends Component {
         else {
         return (
         <div>
-        <div className="timer"><Timer gameComplete={this.state.gameComplete}/></div>
+        <div className="timer"><Timer gameComplete={this.state.gameComplete} setGameTime={this.setGameTime} /></div>
         <div>{this.renderGame()}</div>
         </div>
         )
@@ -110,4 +137,8 @@ class Game extends Component {
 
 }
 
-export default Game
+// const mapDispatchToProps = dispatch => ({
+//   addGame: state => dispatch(addGame(state))
+// })
+
+export default connect(null, {addGame})(Game)
