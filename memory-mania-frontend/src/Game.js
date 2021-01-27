@@ -15,8 +15,7 @@ class Game extends Component {
             // {url: 'https://i.pinimg.com/originals/3f/88/b5/3f88b529ba55072842304f349e6ba26e.jpg', id: '6'}],
             currentPair: [],
             completedPairs: [],
-            newTurn: true,
-            postClickDelay: false,
+            newTurn: false,
             gameComplete: false
         }
     }
@@ -39,14 +38,8 @@ class Game extends Component {
 
     addToCurrentPair = (imageId) => {
         this.setState({
-            currentPair: [...this.state.currentPair, imageId],
-            postClickDelay: true
+            currentPair: [...this.state.currentPair, imageId]
         })
-        setTimeout(() => {
-            this.setState({
-                postClickDelay: false
-            })
-        }, 3000)
     }
 
     hasBeenMatched = (imageId) => {
@@ -66,6 +59,7 @@ class Game extends Component {
                     completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
                     newTurn: true
                 })
+    
             }
             else {
                 this.setState({

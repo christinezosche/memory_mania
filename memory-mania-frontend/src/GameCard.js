@@ -5,18 +5,18 @@ import CardBlank from './CardBlank'
 
 class GameCard extends Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             hasBeenClicked: false,
             hasBeenMatched: false,
-            postClickDelay: props.postClickDelay
+            postClickDelay: false
         }
     }
 
     renderCard = () => {
-        if (this.props.hasBeenMatched(this.props.imageId)) {
+        if (this.state.hasBeenMatched === true) {
             return <div className="game-card"><CardBlank /></div>
         }
         // else if (this.props.newTurn) {
@@ -26,7 +26,12 @@ class GameCard extends Component {
         //     return <div className="game-card"><CardBack /></div>
         // }
         else if (this.state.hasBeenClicked === false) {
+            if (this.state.postClickDelay === true) {
+                    return <div className="game-card"><CardBack /></div>
+                }
+            else {
             return <div className="game-card" onClick={() => this.toggleClick()}><CardBack /></div>
+            }
         }
         else {
         return <div className="game-card"><CardFront imageUrl={this.props.imageUrl} /></div>
@@ -34,11 +39,21 @@ class GameCard extends Component {
     }
 
     toggleState = () => {
-        if (this.props.newTurn === true && this.state.hasBeenClicked === true) {
+        // if (this.props.newTurn === true && this.state.hasBeenClicked === true) {
+        if (this.props.hasBeenMatched(this.props.imageId)) {
+                this.setState({
+                hasBeenMatched: true,
+                hasBeenClicked: false
+                })
+        }
+        else if (this.state.hasBeenClicked === true) {
+
         //     setTimeout(() => {
                 this.setState({
                 hasBeenClicked: false
             })
+        }
+        
         // }, 3000)
             // if (this.state.postClickDelay === false) {
             //     this.setState({
@@ -51,7 +66,7 @@ class GameCard extends Component {
             //     }, 3000)
             // }
             // }
-        }
+    
         // else if (this.props.newTurn === true && this.state.hasBeenClicked === false) {
         //     this.setState({
         //         mustDelay: true
@@ -75,16 +90,32 @@ class GameCard extends Component {
         this.setState({
                 hasBeenClicked: true
             });
-            this.props.addToCurrentPair(this.props.imageId)
+        this.props.addToCurrentPair(this.props.imageId)
         //this.props.checkForPairs()
+    }
+
+    renderWithDelay = () => {
+        this.setState({
+            postClickDelay: true
+        });
+        setTimeout(() => { this.setState({
+            postClickDelay: false
+        })}, 2000);
+        // setTimeout(() => { this.props.checkForPairs() }, 3000)
+        setTimeout(() => { this.toggleState() }, 2000)
+
     }
 
     render () {
         this.props.checkForPairs()
-        this.toggleState()
-        return (
-                <div>{this.renderCard()}</div>
-        )
+        if (this.props.newTurn === true) {
+            return <div>{this.renderWithDelay()}</div>
+        }
+        else {
+        // this.toggleState()
+        return <div>{this.renderCard()}</div>
+        }
+
     }
 
 }
