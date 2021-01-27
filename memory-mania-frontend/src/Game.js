@@ -52,15 +52,12 @@ class Game extends Component {
                 newTurn: false
             })
         }
-       // this.checkForGameOver()
+    this.checkForGameOver()
     }
 
     checkForGameOver = () => {
         if (this.state.completedPairs.length === 6) {
-            //this.setDelay()
-            this.setState({
-                gameComplete: true
-            })
+            this.setDelay()
         }
     }
 
@@ -78,9 +75,14 @@ class Game extends Component {
         return <h1>Game Over!</h1>
     }
 
+    setDelay = () => {
+        setTimeout(() => { this.setState({
+            gameComplete: true
+        })}, 2000);
+    }
+
     render () {
-        //this.checkForGameOver()
-        if (this.state.completedPairs.length === 6) {
+        if (this.state.gameComplete === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
         else {
