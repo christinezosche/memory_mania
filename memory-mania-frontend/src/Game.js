@@ -85,13 +85,7 @@ class Game extends Component {
         return <h1>Game Over!</h1>
     }
 
-    setDelay = () => {
-        setTimeout(() => { this.setState({
-            gameComplete: true
-        })}, 2000);
-    }
-
-    renderGames = () => {
+    renderGameFeatures = () => {
         if (this.state.gameComplete === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
@@ -107,8 +101,8 @@ class Game extends Component {
         else {
         return (
         <div>
-        <div><Timer /></div>
-        <div>{this.renderGames()}</div>
+        <div><Timer gameComplete={this.state.gameComplete}/></div>
+        <div>{this.renderGameFeatures()}</div>
         </div>
         )
         }

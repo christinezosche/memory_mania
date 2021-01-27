@@ -28,6 +28,12 @@ class Timer extends Component {
         }, 1000)
     }
 
+    checkForGameOver = () => {
+        if (this.props.gameComplete === true) {
+            this.stopTimer()
+        }
+    }
+
     stopTimer = () => {
         clearInterval(this.myInterval)
     }
@@ -37,6 +43,7 @@ class Timer extends Component {
     }
 
     render () {
+        this.checkForGameOver()
         const { minutes, seconds } = this.state
         return (
             <div><h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1></div>
