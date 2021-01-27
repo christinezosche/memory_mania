@@ -32,7 +32,7 @@ class GameCard extends Component {
         }
     }
 
-    toggleState = () => {
+    updateState = () => {
         if (this.props.hasBeenMatched(this.props.imageId)) {
                 this.setState({
                 hasBeenMatched: true,
@@ -59,13 +59,12 @@ class GameCard extends Component {
         });
         setTimeout(() => { this.setState({
             postClickDelay: false
-        })}, 2000);
-        setTimeout(() => { this.toggleState() }, 2000)
+        })}, 1500);
+        setTimeout(() => { this.updateState() }, 1500)
     }
 
     render () {
         this.props.checkForPairs()
-        //this.props.checkForGameOver()
         if (this.props.newTurn === true) {
             return <div>{this.renderWithDelay()}</div>
         }

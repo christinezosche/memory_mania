@@ -21,7 +21,6 @@ class Game extends Component {
         this.setState({
             newGame: false
         })
-        this.props.startGame()
     }
 
     addToCurrentPair = (imageId) => {
@@ -74,23 +73,23 @@ class Game extends Component {
     setDelay = () => {
         setTimeout(() => { this.setState({
             gameComplete: true
-        })}, 2000);
+        })}, 1000);
     }
 
-    renderGame = () => {
-        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} checkForPairs={this.checkForPairs} checkForGameOver={this.checkForGameOver} hasBeenMatched={this.hasBeenMatched} newTurn={this.state.newTurn} />)
+    renderCards = () => {
+        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} newTurn={this.state.newTurn} />)
     }
 
     renderEnd = () => {
         return <h1>Game Over!</h1>
     }
 
-    renderGameFeatures = () => {
+    renderGame = () => {
         if (this.state.gameComplete === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
         else {
-            return <div className="game-container">{this.renderGame()}</div>
+            return <div className="game-container">{this.renderCards()}</div>
         }
     }
 
@@ -101,8 +100,8 @@ class Game extends Component {
         else {
         return (
         <div>
-        <div><Timer gameComplete={this.state.gameComplete}/></div>
-        <div>{this.renderGameFeatures()}</div>
+        <div className="timer"><Timer gameComplete={this.state.gameComplete}/></div>
+        <div>{this.renderGame()}</div>
         </div>
         )
         }
