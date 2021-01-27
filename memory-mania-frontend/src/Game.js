@@ -14,7 +14,10 @@ class Game extends Component {
             // {url: 'https://images.squarespace-cdn.com/content/v1/55c945e0e4b04386fb9f8162/1531837146897-RJA7PBBKEMGJWGAGDA2B/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/cute-3252251.jpg?format=2500w', id: '5'}, 
             // {url: 'https://i.pinimg.com/originals/3f/88/b5/3f88b529ba55072842304f349e6ba26e.jpg', id: '6'}],
             currentPair: [],
-            completedPairs: []
+            completedPairs: [],
+            newTurn: true,
+            postClickDelay: false,
+            gameComplete: false
         }
     }
 
@@ -36,21 +39,14 @@ class Game extends Component {
 
     addToCurrentPair = (imageId) => {
         this.setState({
-            currentPair: [...this.state.currentPair, imageId]
+            currentPair: [...this.state.currentPair, imageId],
+            postClickDelay: true
         })
-        if (this.state.currentPair.length === 2) {
-            if (this.state.currentPair[0] === this.state.currentPair[1]) {
-                this.setState({
-                    currentPair: [],
-                    completedPairs: [...this.state.completedPairs, imageId]
-                })
-            }
-            else {
-                this.setState({
-                    currentPair: []
-                })
-            }
-        }
+        setTimeout(() => {
+            this.setState({
+                postClickDelay: false
+            })
+        }, 3000)
     }
 
     hasBeenMatched = (imageId) => {
@@ -62,13 +58,39 @@ class Game extends Component {
         }
     }
 
+    checkForPairs = () => {
+        if (this.state.currentPair.length === 2) {
+            if (this.state.currentPair[0] === this.state.currentPair[1]) {
+                this.setState({
+                    currentPair: [],
+                    completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
+                    newTurn: true
+                })
+            }
+            else {
+                this.setState({
+                    currentPair: [],
+                    newTurn: true
+                })
+            }
+        }
+        else if (this.state.newTurn === false) {
+        }
+        else {
+            this.setState({
+                newTurn: false
+            })
+        }
+    }
+
     render () {
-        debugger
+
         return (
         <div className="game-container">
-                {this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} hasBeenMatched={this.hasBeenMatched}/>)}
+                {this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} currentPair={this.state.currentPair} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} postClickDelay={this.state.postClickDelay} newTurn={this.state.newTurn} />)}
         </div>
         )
+
     }
 
 
