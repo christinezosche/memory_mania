@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GameCard from './GameCard'
+import GameStarter from './GameStarter'
+import Timer from './Timer'
 
 class Game extends Component {
 
@@ -9,9 +11,17 @@ class Game extends Component {
         this.state = {
             currentPair: [],
             completedPairs: [],
+            newGame: true,
             newTurn: false,
             gameComplete: false
         }
+    }
+
+    startGame = () => {
+        this.setState({
+            newGame: false
+        })
+        this.props.startGame()
     }
 
     addToCurrentPair = (imageId) => {
@@ -81,12 +91,26 @@ class Game extends Component {
         })}, 2000);
     }
 
-    render () {
+    renderGames = () => {
         if (this.state.gameComplete === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
         else {
             return <div className="game-container">{this.renderGame()}</div>
+        }
+    }
+
+    render () {
+        if (this.state.newGame === true) {
+            return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
+        }
+        else {
+        return (
+        <div>
+        <div><Timer /></div>
+        <div>{this.renderGames()}</div>
+        </div>
+        )
         }
     }
 
