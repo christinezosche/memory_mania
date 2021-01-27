@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import Game from './Game'
+import Game from '../game-components/Game'
 
 class GameContainer extends Component {
 

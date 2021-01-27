@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import CardFront from './CardFront'
-import CardBack from './CardBack'
-import CardBlank from './CardBlank'
+import CardFront from './card-components/CardFront'
+import CardBack from './card-components/CardBack'
+import CardBlank from './card-components/CardBlank'
 
 class GameCard extends Component {
 
