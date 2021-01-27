@@ -19,12 +19,6 @@ class GameCard extends Component {
         if (this.state.hasBeenMatched === true) {
             return <div className="game-card"><CardBlank /></div>
         }
-        // else if (this.props.newTurn) {
-        //     return <div className="game-card" onClick={() => this.toggleClick()}><CardBack /></div>
-        // }
-        // else if (this.state.mustDelay === true) {
-        //     return <div className="game-card"><CardBack /></div>
-        // }
         else if (this.state.hasBeenClicked === false) {
             if (this.state.postClickDelay === true) {
                     return <div className="game-card"><CardBack /></div>
@@ -39,7 +33,6 @@ class GameCard extends Component {
     }
 
     toggleState = () => {
-        // if (this.props.newTurn === true && this.state.hasBeenClicked === true) {
         if (this.props.hasBeenMatched(this.props.imageId)) {
                 this.setState({
                 hasBeenMatched: true,
@@ -47,43 +40,10 @@ class GameCard extends Component {
                 })
         }
         else if (this.state.hasBeenClicked === true) {
-
-        //     setTimeout(() => {
                 this.setState({
                 hasBeenClicked: false
             })
         }
-        
-        // }, 3000)
-            // if (this.state.postClickDelay === false) {
-            //     this.setState({
-            //     hasBeenClicked: false
-            //     })
-            //     setTimeout(() => {
-            //         this.setState({
-            //             hasBeenClicked: true
-            //         })
-            //     }, 3000)
-            // }
-            // }
-    
-        // else if (this.props.newTurn === true && this.state.hasBeenClicked === false) {
-        //     this.setState({
-        //         mustDelay: true
-        //     })
-        //     setTimeout(() => {
-        //     this.setState({
-        //         mustDelay: false
-        //     })
-        //     }, 3000)
-        // }
-        // if (this.props.hasBeenMatched(this.props.imageId)) {
-        //     // setTimeout(() => {
-        //         this.setState({
-        //             hasBeenMatched: true
-        //         })
-            // }, 3000)
-    //     }
     }
 
     toggleClick = () => {
@@ -91,7 +51,6 @@ class GameCard extends Component {
                 hasBeenClicked: true
             });
         this.props.addToCurrentPair(this.props.imageId)
-        //this.props.checkForPairs()
     }
 
     renderWithDelay = () => {
@@ -101,9 +60,7 @@ class GameCard extends Component {
         setTimeout(() => { this.setState({
             postClickDelay: false
         })}, 2000);
-        // setTimeout(() => { this.props.checkForPairs() }, 3000)
         setTimeout(() => { this.toggleState() }, 2000)
-
     }
 
     render () {
@@ -112,12 +69,9 @@ class GameCard extends Component {
             return <div>{this.renderWithDelay()}</div>
         }
         else {
-        // this.toggleState()
         return <div>{this.renderCard()}</div>
         }
-
     }
-
 }
 
 export default GameCard
