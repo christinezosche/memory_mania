@@ -57,10 +57,16 @@ class GameCard extends Component {
         this.setState({
             postClickDelay: true
         });
-        setTimeout(() => { this.setState({
+        this.timer1 = setTimeout(() => { this.setState({
             postClickDelay: false
         })}, 1500);
-        setTimeout(() => { this.updateState() }, 1500)
+        this.timer2 = setTimeout(() => { this.updateState() }, 1600)
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer1);
+        clearTimeout(this.timer2);
+
     }
 
     render () {
