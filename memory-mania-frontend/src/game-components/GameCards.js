@@ -31,6 +31,7 @@ class GameCards extends Component {
     }
 
     checkForPairs = () => {
+
         if (this.state.currentPair.length === 2) {
             if (this.state.currentPair[0] === this.state.currentPair[1]) {
                 this.setState({
