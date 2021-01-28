@@ -53,8 +53,7 @@ class GameCard extends Component {
         this.props.addToCurrentPair(this.props.imageId)
     }
 
-    renderWithDelay = (prop) => {
-    if (prop === true) {
+    renderWithDelay = () => {
         this.setState({
             postClickDelay: true
         });
@@ -63,7 +62,6 @@ class GameCard extends Component {
         })}, 1500);
         this.timer2 = setTimeout(() => { this.updateState() }, 1600)
     }
-    }
 
     componentWillUnmount() {
         clearTimeout(this.timer1);
@@ -71,17 +69,14 @@ class GameCard extends Component {
 
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.newTurn !== prevProps.newTurn) {
-            this.renderWithDelay(this.props.newTurn)
-        }
-      }
-
     render () {
         this.props.checkForPairs()
-        
+        if (this.props.newTurn === true) {
+            return <div>{this.renderWithDelay()}</div>
+        }
+        else {
         return <div>{this.renderCard()}</div>
-        
+        }
     }
 }
 
