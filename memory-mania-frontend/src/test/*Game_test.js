@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import GameCards from './GameCards'
-import GameStarter from './GameStarter'
-import Timer from './Timer'
+import GameCards from './*GameCards'
+import GameStarter from './*GameStarter'
+import Timer from './*Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { addGame } from '../actions/games';
@@ -16,7 +16,7 @@ class GameTest extends Component {
             time: '',
             id: '',
             newGame: true,
-            gameComplete: false,
+            //gameComplete: false,
            // disableGame: false
         }
     }
@@ -29,13 +29,13 @@ class GameTest extends Component {
         })
     }
 
-    setGameTime = (time) => {
-        this.setState({
-            time: time,
-            gameComplete: false,
-           // disableGame: true
-        })
-    }
+    // setGameTime = (time) => {
+    //     this.setState({
+    //         time: time,
+    //         gameComplete: false,
+    //        // disableGame: true
+    //     })
+    // }
 
     dispatchGame = () => {
         this.props.addGame(
@@ -58,8 +58,8 @@ class GameTest extends Component {
         else {
         return (
         <div>
-        <div className="timer"><Timer gameComplete={this.state.gameComplete} setGameTime={this.setGameTime} /></div>
-        <div className="game-container"><GameCards images={this.props.images} setDelay={this.setDelay} /></div>
+        <div className="timer"><Timer /></div>
+        <div className="game-container"><GameCards images={this.props.images} /></div>
         </div>
         )
         }

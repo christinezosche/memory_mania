@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react'
-import GameCard from './GameCard'
+import GameCard from './*GameCard'
+import { connect } from 'react-redux';
+import { setGameComplete } from '../actions/games'
 
 class GameCards extends Component {
 
@@ -11,7 +13,7 @@ class GameCards extends Component {
             currentPair: [],
             completedPairs: [],
             newTurn: false,
-            gameCompleted: false
+           // gameCompleted: false
         }
     }
 
@@ -59,16 +61,14 @@ class GameCards extends Component {
 
     checkForGameOver = () => {
         if (this.state.completedPairs.length === 6) {
-            setTimeout(() => { this.setState({
-                gameCompleted: true
-            })}, 1000);
-            this.props.setDelay()
-            this.props.dispatchGame()
+            setTimeout(() => { this.props.setGameComplete() }, 1000);
+            //this.props.setDelay()
+            //this.props.dispatchGame()
         }
     }
 
     renderGame = () => {
-        if (this.state.gameCompleted === true) {
+        if (this.props.gameComplete === true) {
             return <div className="game-container">{this.renderEnd()}</div>        
         }
         else {
@@ -91,4 +91,16 @@ class GameCards extends Component {
     }
 }
 
-export default GameCards
+const mapStateToProps = state => {
+    return {
+      gameComplete: state.gameComplete
+    }
+  }
+   
+  const mapDispatchToProps = dispatch => {
+    return {
+      setGameComplete: () => dispatch(setGameComplete())
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameCards)

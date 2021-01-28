@@ -4,3 +4,16 @@ export const addGame = (game) => {
       game
     };
   };
+
+  export const setGameTime = (time) => {
+    return {
+      type: 'SET_GAME_TIME',
+      time
+    };
+  };
+
+  export const setGameComplete = () => {
+    return {
+      type: 'SET_GAME_COMPLETE'
+    };
+  };

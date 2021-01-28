@@ -1,10 +1,15 @@
-export default (state = {completedGames: []}, action) => {
+export default (state = {gameComplete: false}, action) => {
     switch (action.type) {
-      case 'ADD_GAME':
-        return { completedGames: state.completedGames.concat(action.game) };
-          
-      default:
-        return state;
+        case 'SET_GAME_TIME':
+          return { ...state,
+            time: action.time };
+        
+        case 'SET_GAME_COMPLETE':
+            return { ...state,
+                gameComplete: true };
+
+        default:
+          return state;
+      }
     }
-  }
-  
+    

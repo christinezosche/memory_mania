@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import GameTest from '../game-components/Game_test'
+import GameTest from '../test/*Game_test'
 
 class GameContainer extends Component {
 
