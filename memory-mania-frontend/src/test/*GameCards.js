@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import GameCard from './*GameCard'
 import { connect } from 'react-redux';
-import { setGameComplete, clearCurrentPair, addToCompletedPairs, setNewTurn } from '../actions/games'
+import { setGameComplete, clearCurrentPair, addToCompletedPairs, clearHoldImages, setNewTurn, setPostClickDelay } from '../actions/games'
 
 class GameCards extends Component {
 
@@ -17,40 +17,41 @@ class GameCards extends Component {
     //     }
     // }
 
-    hasBeenMatched = (imageId) => {
-        if (this.props.completedPairs.filter(id => id === imageId).length === 0) {
-            return false
-        }
-        else {
-            return true
-        }
-    }
+    
 
     checkForPairs = () => {
 
         if (this.props.currentPair.length === 2) {
-            if (this.props.currentPair[0] === this.props.currentPair[1]) {
-                this.props.addToCompletedPairs(this.props.currentPair[0])
+            if (this.props.currentPair[0].imageId === this.props.currentPair[1].imageId) {
+                this.props.addToCompletedPairs(this.props.currentPair[0].id)
+                this.props.addToCompletedPairs(this.props.currentPair[1].id)
                 this.props.clearCurrentPair()
+                //this.props.addToHoldImages(this.props.currentPair)
+                setTimeout(() => { this.props.clearHoldImages() }, 1500); 
                 this.props.setNewTurn(true)
                 // this.setState({
                 //     currentPair: [],
                 //     completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
                 //     newTurn: true
                 // })
+                this.props.setPostClickDelay(true)        
+                setTimeout(() => { this.props.setPostClickDelay(false) }, 1500); 
             }
             else {
 
                 this.props.clearCurrentPair()
+                setTimeout(() => { this.props.clearHoldImages() }, 1500); 
                 this.props.setNewTurn(true)
                 // this.setState({
                 //     currentPair: [],
                 //     newTurn: true
                 // })
+                this.props.setPostClickDelay(true)        
+                setTimeout(() => { this.props.setPostClickDelay(false) }, 1500); 
             }
         }
-        else if (this.props.newTurn === false) {
-        }
+        // else if (this.props.newTurn === false) {
+        // }
         else {
             this.props.setNewTurn(false)
 
@@ -59,7 +60,7 @@ class GameCards extends Component {
     }
 
     checkForGameOver = () => {
-        if (this.props.completedPairs.length === 6) {
+        if (this.props.completedPairs.length === 12) {
             setTimeout(() => { this.props.setGameComplete() }, 1000);
             //this.props.setDelay()
             //this.props.dispatchGame()
@@ -80,7 +81,7 @@ class GameCards extends Component {
     }
 
     renderCards = () => {
-        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} />)
+        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} />)
     }
 
     render () {
@@ -99,8 +100,10 @@ const mapStateToProps = state => {
     return {
       setGameComplete: () => dispatch(setGameComplete()),
       clearCurrentPair: () => dispatch(clearCurrentPair()),
-      addToCompletedPairs: (imageId) => dispatch(addToCompletedPairs(imageId)),
-      setNewTurn: (value) => dispatch(setNewTurn(value))
+      addToCompletedPairs: (imageObject) => dispatch(addToCompletedPairs(imageObject)),
+      setNewTurn: (value) => dispatch(setNewTurn(value)),
+      setPostClickDelay: (value) => dispatch(setPostClickDelay(value)),
+      clearHoldImages: () => dispatch(clearHoldImages())
     }
   }
 

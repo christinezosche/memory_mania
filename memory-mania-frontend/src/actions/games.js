@@ -18,10 +18,10 @@ export const addGame = (game) => {
     };
   };
 
-  export const addToCurrentPair = (imageId) => {
+  export const addToCurrentPair = (imageObject) => {
     return {
       type: 'ADD_TO_CURRENT_PAIR',
-      imageId
+      imageObject
     };
   };
 
@@ -31,10 +31,10 @@ export const addGame = (game) => {
     };
   };
 
-  export const addToCompletedPairs = (imageId) => {
+  export const addToCompletedPairs = (imageObject) => {
     return {
       type: 'ADD_TO_COMPLETED_PAIRS',
-      imageId
+      imageObject
     };
   };
 
@@ -42,5 +42,25 @@ export const addGame = (game) => {
     return {
       type: 'SET_NEW_TURN',
       value
+    };
+  };
+
+  export const setPostClickDelay = (value) => {
+    return {
+      type: 'SET_POST_CLICK_DELAY',
+      value
+    };
+  };
+
+  export const addToHoldImages = (id) => {
+    return {
+      type: 'ADD_TO_HOLD_IMAGES',
+      id
+    };
+  };
+
+  export const clearHoldImages = () => {
+    return {
+      type: 'CLEAR_HOLD_IMAGES'
     };
   };
