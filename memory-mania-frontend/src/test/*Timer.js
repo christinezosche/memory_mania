@@ -45,8 +45,11 @@ class Timer extends Component {
         clearInterval(this.myInterval)
     }
 
-    render () {
+    componentDidUpdate = () => {
         this.checkForGameOver()
+    }
+
+    render () {
         const { minutes, seconds } = this.state
         return (
             <div><h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1></div>

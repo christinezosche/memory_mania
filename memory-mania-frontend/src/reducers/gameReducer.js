@@ -1,4 +1,4 @@
-export default (state = {currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false}, action) => {
+export default (state = {currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: ''}, action) => {
     switch (action.type) {
         case 'SET_GAME_TIME':
           return { ...state,

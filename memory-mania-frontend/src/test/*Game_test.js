@@ -15,9 +15,7 @@ class GameTest extends Component {
             name: '',
             time: '',
             id: '',
-            newGame: true,
-            //gameComplete: false,
-           // disableGame: false
+            newGame: true
         }
     }
 
@@ -29,26 +27,12 @@ class GameTest extends Component {
         })
     }
 
-    // setGameTime = (time) => {
-    //     this.setState({
-    //         time: time,
-    //         gameComplete: false,
-    //        // disableGame: true
-    //     })
-    // }
-
     dispatchGame = () => {
         this.props.addGame(
             {name: this.state.name,
             id: this.state.id,
             time: this.state.time }
         )
-    }
-
-    setDelay = () => {
-        setTimeout(() => { this.setState({
-            gameComplete: true
-        })}, 1000);
     }
 
     render () {

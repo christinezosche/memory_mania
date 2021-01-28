@@ -6,19 +6,6 @@ import { setGameComplete, clearCurrentPair, addToCompletedPairs, clearHoldImages
 
 class GameCards extends Component {
 
-    // constructor() {
-    //     super()
-
-    //     this.state = {
-    //        // currentPair: [],
-    //         // completedPairs: [],
-    //         //newTurn: false,
-    //        // gameCompleted: false
-    //     }
-    // }
-
-    
-
     checkForPairs = () => {
 
         if (this.props.currentPair.length === 2) {
@@ -26,35 +13,21 @@ class GameCards extends Component {
                 this.props.addToCompletedPairs(this.props.currentPair[0].id)
                 this.props.addToCompletedPairs(this.props.currentPair[1].id)
                 this.props.clearCurrentPair()
-                //this.props.addToHoldImages(this.props.currentPair)
                 setTimeout(() => { this.props.clearHoldImages() }, 1500); 
                 this.props.setNewTurn(true)
-                // this.setState({
-                //     currentPair: [],
-                //     completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
-                //     newTurn: true
-                // })
                 this.props.setPostClickDelay(true)        
                 setTimeout(() => { this.props.setPostClickDelay(false) }, 1500); 
             }
             else {
-
                 this.props.clearCurrentPair()
                 setTimeout(() => { this.props.clearHoldImages() }, 1500); 
                 this.props.setNewTurn(true)
-                // this.setState({
-                //     currentPair: [],
-                //     newTurn: true
-                // })
                 this.props.setPostClickDelay(true)        
                 setTimeout(() => { this.props.setPostClickDelay(false) }, 1500); 
             }
         }
-        // else if (this.props.newTurn === false) {
-        // }
         else {
             this.props.setNewTurn(false)
-
         }
     this.checkForGameOver()
     }
@@ -62,8 +35,6 @@ class GameCards extends Component {
     checkForGameOver = () => {
         if (this.props.completedPairs.length === 12) {
             setTimeout(() => { this.props.setGameComplete() }, 1000);
-            //this.props.setDelay()
-            //this.props.dispatchGame()
         }
     }
 
@@ -84,8 +55,11 @@ class GameCards extends Component {
         return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} />)
     }
 
-    render () {
+    componentDidUpdate = () => {
         this.checkForPairs()
+    }
+
+    render () {
         return (
             <div>{this.renderGame()}</div>
         )
