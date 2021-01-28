@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import CardFront from './card-components/CardFront'
 import CardBack from './card-components/CardBack'
 import CardBlank from './card-components/CardBlank'
+import { connect } from 'react-redux';
+import { addToCurrentPair } from '../actions/games'
 
 class GameCard extends Component {
 
@@ -70,7 +72,7 @@ class GameCard extends Component {
     }
 
     render () {
-        this.props.checkForPairs()
+  
         if (this.props.newTurn === true) {
             return <div>{this.renderWithDelay()}</div>
         }
@@ -80,5 +82,15 @@ class GameCard extends Component {
     }
 }
 
-export default GameCard
+const mapStateToProps = state => {
+    return state
+  }
+   
+  const mapDispatchToProps = dispatch => {
+    return {
+      addToCurrentPair: (imageId) => dispatch(addToCurrentPair(imageId))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameCard)
 

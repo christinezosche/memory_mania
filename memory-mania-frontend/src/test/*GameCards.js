@@ -2,29 +2,23 @@
 import React, { Component } from 'react'
 import GameCard from './*GameCard'
 import { connect } from 'react-redux';
-import { setGameComplete } from '../actions/games'
+import { setGameComplete, clearCurrentPair, addToCompletedPairs, setNewTurn } from '../actions/games'
 
 class GameCards extends Component {
 
-    constructor() {
-        super()
+    // constructor() {
+    //     super()
 
-        this.state = {
-            currentPair: [],
-            completedPairs: [],
-            newTurn: false,
-           // gameCompleted: false
-        }
-    }
-
-    addToCurrentPair = (imageId) => {
-        this.setState({
-            currentPair: [...this.state.currentPair, imageId]
-        })
-    }
+    //     this.state = {
+    //        // currentPair: [],
+    //         // completedPairs: [],
+    //         //newTurn: false,
+    //        // gameCompleted: false
+    //     }
+    // }
 
     hasBeenMatched = (imageId) => {
-        if (this.state.completedPairs.filter(id => id === imageId).length === 0) {
+        if (this.props.completedPairs.filter(id => id === imageId).length === 0) {
             return false
         }
         else {
@@ -34,33 +28,38 @@ class GameCards extends Component {
 
     checkForPairs = () => {
 
-        if (this.state.currentPair.length === 2) {
-            if (this.state.currentPair[0] === this.state.currentPair[1]) {
-                this.setState({
-                    currentPair: [],
-                    completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
-                    newTurn: true
-                })
+        if (this.props.currentPair.length === 2) {
+            if (this.props.currentPair[0] === this.props.currentPair[1]) {
+                this.props.addToCompletedPairs(this.props.currentPair[0])
+                this.props.clearCurrentPair()
+                this.props.setNewTurn(true)
+                // this.setState({
+                //     currentPair: [],
+                //     completedPairs: [...this.state.completedPairs, this.state.currentPair[0]],
+                //     newTurn: true
+                // })
             }
             else {
-                this.setState({
-                    currentPair: [],
-                    newTurn: true
-                })
+
+                this.props.clearCurrentPair()
+                this.props.setNewTurn(true)
+                // this.setState({
+                //     currentPair: [],
+                //     newTurn: true
+                // })
             }
         }
-        else if (this.state.newTurn === false) {
+        else if (this.props.newTurn === false) {
         }
         else {
-            this.setState({
-                newTurn: false
-            })
+            this.props.setNewTurn(false)
+
         }
     this.checkForGameOver()
     }
 
     checkForGameOver = () => {
-        if (this.state.completedPairs.length === 6) {
+        if (this.props.completedPairs.length === 6) {
             setTimeout(() => { this.props.setGameComplete() }, 1000);
             //this.props.setDelay()
             //this.props.dispatchGame()
@@ -81,10 +80,11 @@ class GameCards extends Component {
     }
 
     renderCards = () => {
-        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} addToCurrentPair={this.addToCurrentPair} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} newTurn={this.state.newTurn} />)
+        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} checkForPairs={this.checkForPairs} hasBeenMatched={this.hasBeenMatched} />)
     }
 
     render () {
+        this.checkForPairs()
         return (
             <div>{this.renderGame()}</div>
         )
@@ -92,14 +92,15 @@ class GameCards extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-      gameComplete: state.gameComplete
-    }
+    return state
   }
    
   const mapDispatchToProps = dispatch => {
     return {
-      setGameComplete: () => dispatch(setGameComplete())
+      setGameComplete: () => dispatch(setGameComplete()),
+      clearCurrentPair: () => dispatch(clearCurrentPair()),
+      addToCompletedPairs: (imageId) => dispatch(addToCompletedPairs(imageId)),
+      setNewTurn: (value) => dispatch(setNewTurn(value))
     }
   }
 
