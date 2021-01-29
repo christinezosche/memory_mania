@@ -11,7 +11,7 @@ export default (state = {name: '', id: '', imageUrls: [], requesting: false, cur
         case 'ADD_IMAGES':
             return {
                 ...state,
-                imageUrls: action.imageUrls.map(image => image.url),
+                imageUrls: action.imageUrls.map(image => image.images.original.url),
                 requesting: false
         };
           

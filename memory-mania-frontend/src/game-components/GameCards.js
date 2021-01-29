@@ -33,7 +33,7 @@ class GameCards extends Component {
     }
 
     checkForGameOver = () => {
-        if (this.props.completedPairs.length === 2) {
+        if (this.props.completedPairs.length === 24) {
             setTimeout(() => { this.props.setGameComplete() }, 1000)
         }
     }
