@@ -5,7 +5,7 @@ import GameEnder from './GameEnder'
 import Timer from './Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { setData } from '../actions/games';
+import { setData, clearGameData } from '../actions/games';
 
 class Game extends Component {
 
@@ -14,21 +14,22 @@ class Game extends Component {
 
         this.state = {
             name: '',
-            id: '',
+            id: uuid(),
             newGame: true
         }
     }
 
     startNewGame = () => {
+        this.props.clearGameData()
+        let newId = uuid();
         this.setState({
+            id: newId,
             newGame: true
         })
     }
 
     startGame = () => {
-        let newId = uuid();
         this.setState({
-            id: newId,
             newGame: false
         })
         this.props.setData({name: this.state.name, id: this.state.id})
@@ -60,7 +61,8 @@ const mapStateToProps = state => {
    
   const mapDispatchToProps = dispatch => {
     return {
-      setData: (object) => dispatch(setData(object))
+      setData: (object) => dispatch(setData(object)),
+      clearGameData: () => dispatch(clearGameData())
     }
   }
 

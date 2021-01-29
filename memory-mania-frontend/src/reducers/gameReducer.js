@@ -41,6 +41,10 @@ export default (state = {name: '', id: '', currentPair: [], completedPairs: [], 
         case 'CLEAR_HOLD_IMAGES':
             return { ...state,
                 holdImages: [] };
+        
+        case 'CLEAR_GAME_DATA':
+            return {
+                name: '', id: '', currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' };
 
         default:
           return state;

@@ -65,3 +65,9 @@
       type: 'CLEAR_HOLD_IMAGES'
     };
   };
+
+  export const clearGameData = () => {
+    return {
+      type: 'CLEAR_GAME_DATA'
+    };
+  };
