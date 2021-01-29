@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux'
 import gameReducer from './reducers/gameReducer.js'
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-let store = createStore(gameReducer, applyMiddleware(thunk))
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+let store = createStore(gameReducer, composeEnhancer(applyMiddleware(thunk)))
 
 ReactDOM.render(
   <Provider store={store}>
