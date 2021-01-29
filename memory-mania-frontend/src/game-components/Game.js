@@ -15,7 +15,8 @@ class Game extends Component {
         this.state = {
             name: '',
             id: uuid(),
-            newGame: true
+            newGame: true,
+            images: []
         }
     }
 
@@ -29,11 +30,47 @@ class Game extends Component {
     }
 
     startGame = () => {
+        this.setImages(this.props.imageUrls)
         this.setState({
             newGame: false
         })
         this.props.setData({name: this.state.name, id: this.state.id})
     }
+
+    setImages = (array) => {
+        let doubledArray = [...array, ...array]
+        let imageObjects = doubledArray.map(item => {
+         let newObject = {
+            "url": item,
+            "id": uuid(),
+            "imageId": doubledArray.indexOf(item)
+          };
+          return newObject;
+         });
+
+
+        let randomizedArray = this.shuffle(imageObjects)
+
+        this.setState({
+            images: randomizedArray
+        })
+    }
+
+    shuffle = (array) => {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+      
+        while (0 !== currentIndex) {
+      
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
     
     render () {
         if (this.state.newGame === true) {
@@ -46,7 +83,7 @@ class Game extends Component {
         return (
         <div>
         <div className="timer"><Timer /></div>
-        <div className="game-container"><GameCards images={this.props.images} /></div>
+        <div className="game-container"><GameCards images={this.state.images} /></div>
         </div>
         )
         }

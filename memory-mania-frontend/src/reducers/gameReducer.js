@@ -1,4 +1,4 @@
-export default (state = {name: '', id: '', images: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
+export default (state = {name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
 
         case 'START_ADDING_ASTRONAUTS_REQUEST':
@@ -11,7 +11,7 @@ export default (state = {name: '', id: '', images: [], requesting: false, curren
         case 'ADD_IMAGES':
             return {
                 ...state,
-                images: action.images.map(image => image.url),
+                imageUrls: action.imageUrls.map(image => image.url),
                 requesting: false
         };
           
