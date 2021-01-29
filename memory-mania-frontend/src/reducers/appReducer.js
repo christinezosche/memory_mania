@@ -1,7 +1,7 @@
 export default (state = {completedGames: []}, action) => {
     switch (action.type) {
-      case 'ADD_GAME':
-        return { completedGames: state.completedGames.concat(action.game) };
+      case 'SAVE_GAME_DATA':
+        return { completedGames: state.completedGames.concat(action.gameObject) };
           
       default:
         return state;

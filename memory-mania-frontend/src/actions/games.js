@@ -1,7 +1,8 @@
-export const addGame = (game) => {
+
+  export const setData = (object) => {
     return {
-      type: 'ADD_GAME',
-      game
+      type: 'SET_DATA',
+      object
     };
   };
 

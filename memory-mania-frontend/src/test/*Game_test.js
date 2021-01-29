@@ -4,7 +4,7 @@ import GameStarter from './*GameStarter'
 import Timer from './*Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { addGame } from '../actions/games';
+import { setData } from '../actions/games';
 
 class GameTest extends Component {
 
@@ -13,28 +13,18 @@ class GameTest extends Component {
 
         this.state = {
             name: '',
-            time: '',
-            id: '',
+            id: uuid(),
             newGame: true
         }
     }
 
     startGame = () => {
-        let newID = uuid();
         this.setState({
-            newGame: false,
-            id: newID
+            newGame: false
         })
+        this.props.setData({name: this.state.name, id: this.state.id})
     }
-
-    dispatchGame = () => {
-        this.props.addGame(
-            {name: this.state.name,
-            id: this.state.id,
-            time: this.state.time }
-        )
-    }
-
+    
     render () {
         if (this.state.newGame === true) {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
@@ -52,8 +42,14 @@ class GameTest extends Component {
 
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   addGame: state => dispatch(addGame(state))
-// })
+const mapStateToProps = state => {
+    return state
+  }
+   
+  const mapDispatchToProps = dispatch => {
+    return {
+      setData: (object) => dispatch(setData(object))
+    }
+  }
 
-export default connect(null, {addGame})(GameTest)
+export default connect(mapStateToProps, mapDispatchToProps)(GameTest)

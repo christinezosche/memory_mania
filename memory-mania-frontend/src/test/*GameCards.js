@@ -34,7 +34,7 @@ class GameCards extends Component {
 
     checkForGameOver = () => {
         if (this.props.completedPairs.length === 12) {
-            setTimeout(() => { this.props.setGameComplete() }, 1000);
+            setTimeout(() => { this.props.setGameComplete() }, 1000)
         }
     }
 
@@ -48,7 +48,9 @@ class GameCards extends Component {
     }
 
     renderEnd = () => {
-        return <h1>Game Over!</h1>
+        return (
+        <h1>Game Over!</h1>
+        )
     }
 
     renderCards = () => {

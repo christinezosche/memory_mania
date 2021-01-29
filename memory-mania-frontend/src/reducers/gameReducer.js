@@ -1,5 +1,11 @@
-export default (state = {currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: ''}, action) => {
+export default (state = {name: '', id: '', currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
+          
+        case 'SET_DATA':
+            return { ...state,
+                name: action.object.name,
+                id: action.object.id};
+
         case 'SET_GAME_TIME':
           return { ...state,
             time: action.time };
@@ -40,4 +46,5 @@ export default (state = {currentPair: [], completedPairs: [], holdImages: [], po
           return state;
       }
     }
-    
+
+
