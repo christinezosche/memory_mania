@@ -33,7 +33,7 @@ class GameCards extends Component {
     }
 
     checkForGameOver = () => {
-        if (this.props.completedPairs.length === 12) {
+        if (this.props.completedPairs.length === 24) {
             setTimeout(() => { this.props.setGameComplete() }, 1000)
         }
     }
@@ -54,7 +54,7 @@ class GameCards extends Component {
     }
 
     renderCards = () => {
-        return this.props.images.map((image) => <GameCard imageUrl={image.url} imageId={image.id} />)
+        return this.props.images.map((image) => <GameCard key={image.id} imageUrl={image.url} imageId={image.imageId} />)
     }
 
     componentDidUpdate = () => {

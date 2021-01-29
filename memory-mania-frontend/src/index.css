@@ -20,7 +20,7 @@ code {
 
  .game-container {
   width: 1000px;
-  height: 625px;
+  height: 475px;
   display: flex; 
   flex-wrap: wrap;
   align-items: center;
@@ -28,8 +28,8 @@ code {
 }
 
 .game-card {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 120px;
   margin: 5px;
   transition: transform 1s;
   transform-style: preserve-3d; 
