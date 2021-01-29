@@ -31,7 +31,7 @@ class Timer extends Component {
     }
 
     checkForGameOver = () => {
-        if (this.props.gameComplete === true) {
+        if (this.props.completedPairs.length === 2) {
             this.stopTimer()
             this.props.setGameTime(`${this.state.minutes}:${this.state.seconds < 10 ? `0${this.state.seconds}` : this.state.seconds}`)
         }
@@ -58,9 +58,7 @@ class Timer extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-      gameComplete: state.gameComplete
-    }
+    return state
   }
    
   const mapDispatchToProps = dispatch => {

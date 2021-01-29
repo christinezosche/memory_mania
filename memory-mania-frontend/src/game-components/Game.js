@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GameCards from './GameCards'
 import GameStarter from './GameStarter'
+import GameEnder from './GameEnder'
 import Timer from './Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
@@ -13,13 +14,21 @@ class Game extends Component {
 
         this.state = {
             name: '',
-            id: uuid(),
+            id: '',
             newGame: true
         }
     }
 
-    startGame = () => {
+    startNewGame = () => {
         this.setState({
+            newGame: true
+        })
+    }
+
+    startGame = () => {
+        let newId = uuid();
+        this.setState({
+            id: newId,
             newGame: false
         })
         this.props.setData({name: this.state.name, id: this.state.id})
@@ -28,6 +37,9 @@ class Game extends Component {
     render () {
         if (this.state.newGame === true) {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
+        }
+        else if (this.props.gameComplete === true) {
+            return <div className="game-container"><GameEnder time={this.props.time} startNewGame={this.startNewGame} /></div>
         }
         else {
         return (
