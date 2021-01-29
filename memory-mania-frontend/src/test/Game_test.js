@@ -72,4 +72,5 @@ class GameTest extends Component {
 //   addGame: state => dispatch(addGame(state))
 // })
 
-export default connect(null, {addGame})(GameTest)
+// export default connect(null, {addGame})(GameTest)
+export default GameTest

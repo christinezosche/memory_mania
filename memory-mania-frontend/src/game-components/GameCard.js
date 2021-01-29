@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import CardFront from './card-components/CardFront'
 import CardBack from './card-components/CardBack'
 import CardBlank from './card-components/CardBlank'
+import { connect } from 'react-redux';
+import { addToCurrentPair, addToHoldImages } from '../actions/games'
+import uuid from 'uuid';
 
 class GameCard extends Component {
 
@@ -9,76 +12,63 @@ class GameCard extends Component {
         super()
 
         this.state = {
-            hasBeenClicked: false,
-            hasBeenMatched: false,
-            postClickDelay: false
+            id: uuid()
         }
     }
 
     renderCard = () => {
-        if (this.state.hasBeenMatched === true) {
+        if (this.hasBeenClicked()) {
+            return <div className="game-card"><CardFront imageUrl={this.props.imageUrl} /></div>
+        }
+        else if (this.hasBeenMatched()) {
             return <div className="game-card"><CardBlank /></div>
         }
-        else if (this.state.hasBeenClicked === false) {
-            if (this.state.postClickDelay === true) {
-                    return <div className="game-card"><CardBack /></div>
-                }
-            else {
-            return <div className="game-card" onClick={() => this.toggleClick()}><CardBack /></div>
-            }
+        else if (this.props.postClickDelay === true) {
+            return <div className="game-card"><CardBack /></div>
         }
         else {
-        return <div className="game-card"><CardFront imageUrl={this.props.imageUrl} /></div>
+            return <div className="game-card" onClick={() => this.toggleClick()}><CardBack /></div>
         }
     }
 
-    updateState = () => {
-        if (this.props.hasBeenMatched(this.props.imageId)) {
-                this.setState({
-                hasBeenMatched: true,
-                hasBeenClicked: false
-                })
+    hasBeenMatched = () => {
+        if (this.props.completedPairs.filter(id => id === this.state.id).length === 0) {
+            return false
         }
-        else if (this.state.hasBeenClicked === true) {
-                this.setState({
-                hasBeenClicked: false
-            })
+        else {
+            return true
+        }
+    }
+
+    hasBeenClicked = () => {
+        if (this.props.holdImages.filter(id => id === this.state.id).length === 0) {
+            return false
+        }
+        else {
+            return true
         }
     }
 
     toggleClick = () => {
-        this.setState({
-                hasBeenClicked: true
-            });
-        this.props.addToCurrentPair(this.props.imageId)
-    }
-
-    renderWithDelay = () => {
-        this.setState({
-            postClickDelay: true
-        });
-        this.timer1 = setTimeout(() => { this.setState({
-            postClickDelay: false
-        })}, 1500);
-        this.timer2 = setTimeout(() => { this.updateState() }, 1600)
-    }
-
-    componentWillUnmount() {
-        clearTimeout(this.timer1);
-        clearTimeout(this.timer2);
-
+        this.props.addToCurrentPair({id: this.state.id, imageId: this.props.imageId});
+        this.props.addToHoldImages(this.state.id);
     }
 
     render () {
-        this.props.checkForPairs()
-        if (this.props.newTurn === true) {
-            return <div>{this.renderWithDelay()}</div>
-        }
-        else {
         return <div>{this.renderCard()}</div>
-        }
     }
 }
 
-export default GameCard
+const mapStateToProps = state => {
+    return state
+  }
+   
+const mapDispatchToProps = dispatch => {
+    return {
+      addToHoldImages: (id) => dispatch(addToHoldImages(id)),
+      addToCurrentPair: (imageObject) => dispatch(addToCurrentPair(imageObject))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameCard)
 

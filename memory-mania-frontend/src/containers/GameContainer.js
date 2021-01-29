@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import GameTest from '../test/*Game_test'
+import Game from '../game-components/Game'
 
 class GameContainer extends Component {
 
@@ -40,7 +40,7 @@ class GameContainer extends Component {
         
         return (
         <div>
-            <GameTest images={randomizedArray} />
+            <Game images={randomizedArray} />
         </div>
         )
     }

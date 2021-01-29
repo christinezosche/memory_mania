@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { setGameTime } from '../actions/games'
 
 class Timer extends Component {
 
@@ -43,8 +45,11 @@ class Timer extends Component {
         clearInterval(this.myInterval)
     }
 
-    render () {
+    componentDidUpdate = () => {
         this.checkForGameOver()
+    }
+
+    render () {
         const { minutes, seconds } = this.state
         return (
             <div><h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1></div>
@@ -52,4 +57,16 @@ class Timer extends Component {
     }
 }
 
-export default Timer
+const mapStateToProps = state => {
+    return {
+      gameComplete: state.gameComplete
+    }
+  }
+   
+  const mapDispatchToProps = dispatch => {
+    return {
+      setGameTime: (time) => dispatch(setGameTime(time))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer)
