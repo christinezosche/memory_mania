@@ -1,7 +1,7 @@
 export default (state = {name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
 
-        case 'START_ADDING_ASTRONAUTS_REQUEST':
+        case 'START_ADDING_IMAGES_REQUEST':
             return {
                 ...state,
                 images: [...state.images],
