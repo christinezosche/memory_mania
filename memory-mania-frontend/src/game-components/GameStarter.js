@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchImages } from '../actions/fetchImages'
+import GifSearch from './GifSearch'
 
 class GameStarter extends Component {
 
-  componentDidMount() {
-    this.props.fetchImages()
+  constructor() {
+    super()
+    this.state = {
+        searchSubmitted: false
+    }
   }
 
+  submit = (searchTerm) => {
+    this.props.fetchImages(searchTerm)
+    this.setState({
+      searchSubmitted: true
+    })
+  }
+  
+  componentDidMount () {
+    this.setState({
+      searchSubmitted: false
+    })
+  }
 
   render () {
-    if (this.props.requesting === true) {
+    if (this.state.searchSubmitted === false) {
+      return <div><GifSearch submit={this.submit} /></div>
+    }
+    else if (this.props.requesting === true) {
       return <h1>Loading...</h1>
     }
     else {
-    return (
+      return (
       <button className="start-button" onClick={() => this.props.startGame()}>
           Start Game!
       </button>
-    )
+      )
     }
     }
 
@@ -30,7 +49,7 @@ class GameStarter extends Component {
   }
 
   const mapDispatchToProps = dispatch => {
-    return { fetchImages: () => dispatch(fetchImages()) }
+    return { fetchImages: (searchTerm) => dispatch(fetchImages(searchTerm)) }
   }
  
    

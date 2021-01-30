@@ -17,15 +17,15 @@ class Timer extends Component {
             const { seconds, minutes } = this.state
 
             if (seconds === 59) {
-                this.setState(({ minutes }) => ({
+                this.setState({
                     minutes: minutes + 1,
                     seconds: 0
-                }))
+                })
             }
             else {
-                this.setState(({ seconds }) => ({
+                this.setState({
                     seconds: seconds + 1
-                }))
+                })
             }
         }, 1000)
     }
