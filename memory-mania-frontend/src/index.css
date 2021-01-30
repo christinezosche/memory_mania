@@ -50,7 +50,7 @@ code {
   height: inherit;
   width: inherit;
   backface-visibility: hidden;
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
  .card-front {
