@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(username: params[:username], password_digest: params[:password])
-        render json: game
+        render json: user, only: [:username, :games]
     end
 
 end
