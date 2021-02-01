@@ -2,6 +2,7 @@
   "name": "memory-mania",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "babel": {
     "presets": [
       "airbnb",

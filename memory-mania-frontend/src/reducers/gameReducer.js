@@ -4,7 +4,6 @@ export default (state = {name: '', id: '', imageUrls: [], requesting: false, cur
         case 'START_ADDING_IMAGES_REQUEST':
             return {
                 ...state,
-                images: [...state.images],
                 requesting: true
         };
  
