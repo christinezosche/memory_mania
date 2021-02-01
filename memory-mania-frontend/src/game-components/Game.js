@@ -77,7 +77,7 @@ class Game extends Component {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
         }
         else if (this.props.gameComplete === true) {
-            return <div className="game-container"><GameEnder time={this.props.time} startNewGame={this.startNewGame} /></div>
+            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} /></div>
         }
         else {
         return (
