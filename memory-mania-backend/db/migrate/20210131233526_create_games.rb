@@ -4,6 +4,8 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.string :time
       t.string :game_id
       t.integer :user_id
+      t.string :name
+      t.string :username
 
       t.timestamps
     end
