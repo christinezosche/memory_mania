@@ -3,7 +3,6 @@ class CreateGames < ActiveRecord::Migration[6.0]
     create_table :games do |t|
       t.string :time
       t.string :game_id
-      t.integer :user_id
       t.string :name
       t.string :username
 

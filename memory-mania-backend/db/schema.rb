@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_01_31_233526) do
   create_table "games", force: :cascade do |t|
     t.string "time"
     t.string "game_id"
-    t.integer "user_id"
     t.string "name"
     t.string "username"
     t.datetime "created_at", precision: 6, null: false
