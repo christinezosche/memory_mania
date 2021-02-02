@@ -8,7 +8,7 @@ addGame = () => {
          "name": this.props.name,
          "time": this.props.time,
          "game_id": this.props.id,
-         "user_id": 1,
+         "username": 'test',
          };
 
     let configObj = {
