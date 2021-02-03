@@ -1,4 +1,4 @@
-export default (state = {name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
+export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
 
         case 'START_ADDING_IMAGES_REQUEST':
@@ -11,6 +11,20 @@ export default (state = {name: '', id: '', imageUrls: [], requesting: false, cur
             return {
                 ...state,
                 imageUrls: action.imageUrls.map(image => image.images.original.url),
+                requesting: false
+        };
+
+        case 'ADD_MOVIE_IMAGES':
+            return {
+                ...state,
+                movies: action.imageUrls.map(url => `https://image.tmdb.org/t/p/w500${url}`),
+                requesting: false
+        };
+
+        case 'ADD_NYT_IMAGES':
+            return {
+                ...state,
+                NYT: action.imageUrls.map(object => object.url),
                 requesting: false
         };
           

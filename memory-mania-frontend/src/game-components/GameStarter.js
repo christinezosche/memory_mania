@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchImages } from '../actions/fetchImages'
+import { fetchImages, fetchMovies, fetchNyt } from '../actions/fetchImages'
 import GifSearch from './GifSearch'
 
 class GameStarter extends Component {
@@ -34,9 +34,17 @@ class GameStarter extends Component {
     }
     else {
       return (
+      <div>
       <button className="start-button" onClick={() => this.props.startGame()}>
           Start Game!
       </button>
+      <button className="start-button" onClick={() => this.props.fetchMovies()}>
+      fetch movies
+      </button>
+      <button className="start-button" onClick={() => this.props.fetchNyt()}>
+      fetch NYT
+      </button>
+      </div>
       )
     }
     }
@@ -49,7 +57,10 @@ class GameStarter extends Component {
   }
 
   const mapDispatchToProps = dispatch => {
-    return { fetchImages: (searchTerm) => dispatch(fetchImages(searchTerm)) }
+    return { fetchImages: (searchTerm) => dispatch(fetchImages(searchTerm)),
+             fetchMovies: () => dispatch(fetchMovies()),
+             fetchNyt: () => dispatch(fetchNyt())
+            }
   }
  
    
