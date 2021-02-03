@@ -36,7 +36,10 @@ render () {
         <h1>Game Over!</h1>
         <h2>Your Time: {this.props.time}</h2>
       <button className="start-button" onClick={() => this.props.startNewGame()}>
-          Start New Game!
+          Play Again!
+      </button>
+      <button className="start-button" onClick={() => this.props.browseOtherGames()}>
+          Browse Other Games!
       </button>
       </div>
     )

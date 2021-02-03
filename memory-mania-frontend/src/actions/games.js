@@ -6,6 +6,13 @@
     };
   };
 
+  export const setGameName = (name) => {
+    return {
+      type: 'SET_GAME_NAME',
+      name
+    };
+  };
+
   export const setGameTime = (time) => {
     return {
       type: 'SET_GAME_TIME',

@@ -1,4 +1,4 @@
-export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
+export default (state = {name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
 
         case 'START_ADDING_IMAGES_REQUEST':
@@ -7,7 +7,7 @@ export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], r
                 requesting: true
         };
  
-        case 'ADD_IMAGES':
+        case 'ADD_GIFS':
             return {
                 ...state,
                 imageUrls: action.imageUrls.map(image => image.images.original.url),
@@ -17,14 +17,14 @@ export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], r
         case 'ADD_MOVIE_IMAGES':
             return {
                 ...state,
-                movies: action.imageUrls.map(url => `https://image.tmdb.org/t/p/w500${url}`),
+                imageUrls: action.imageUrls.map(url => `https://image.tmdb.org/t/p/w500${url}`),
                 requesting: false
         };
 
         case 'ADD_NYT_IMAGES':
             return {
                 ...state,
-                NYT: action.imageUrls.map(object => object.url),
+                imageUrls: action.imageUrls.map(object => object.url),
                 requesting: false
         };
           
@@ -32,6 +32,10 @@ export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], r
             return { ...state,
                 name: action.object.name,
                 id: action.object.id};
+
+        case 'SET_GAME_NAME':
+            return { ...state,
+                    name: action.name};
 
         case 'SET_GAME_TIME':
           return { ...state,
@@ -71,7 +75,8 @@ export default (state = {name: '', id: '', movies: [], NYT: [], imageUrls: [], r
         
         case 'CLEAR_GAME_DATA':
             return {
-                name: '', id: '', currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' };
+                ...state,
+                id: '', currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' };
 
         default:
           return state;

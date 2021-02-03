@@ -5,7 +5,7 @@ import GameEnder from './GameEnder'
 import Timer from './Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { setData, clearGameData } from '../actions/games';
+import { setData, clearGameData, setGameName } from '../actions/games';
 
 class Game extends Component {
 
@@ -13,7 +13,6 @@ class Game extends Component {
         super()
 
         this.state = {
-            name: '',
             id: uuid(),
             newGame: true,
             images: []
@@ -29,12 +28,17 @@ class Game extends Component {
         })
     }
 
+    browseOtherGames = () => {
+        this.props.clearGameData()
+        this.props.setGameName('')
+    }
+
     startGame = () => {
         this.setImages(this.props.imageUrls)
         this.setState({
             newGame: false
         })
-        this.props.setData({name: this.state.name, id: this.state.id})
+        this.props.setData({id: this.state.id})
     }
 
     setImages = (array) => {
@@ -72,12 +76,16 @@ class Game extends Component {
         return array;
       }
     
+    componentWillUnmount = () => {
+        this.props.clearGameData()
+    }
+    
     render () {
         if (this.state.newGame === true) {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
         }
         else if (this.props.gameComplete === true) {
-            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} /></div>
+            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} browseOtherGames={this.browseOtherGames} /></div>
         }
         else {
         return (
@@ -99,7 +107,8 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
       setData: (object) => dispatch(setData(object)),
-      clearGameData: () => dispatch(clearGameData())
+      clearGameData: () => dispatch(clearGameData()),
+      setGameName: (name) => dispatch(setGameName(name))
     }
   }
 
