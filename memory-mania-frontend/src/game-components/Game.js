@@ -38,7 +38,7 @@ class Game extends Component {
         this.setState({
             newGame: false
         })
-        this.props.setData({id: this.state.id})
+        this.props.setData(this.state.id)
     }
 
     setImages = (array) => {
@@ -85,7 +85,7 @@ class Game extends Component {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
         }
         else if (this.props.gameComplete === true) {
-            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} browseOtherGames={this.browseOtherGames} /></div>
+            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} browseOtherGames={this.browseOtherGames}/></div>
         }
         else {
         return (

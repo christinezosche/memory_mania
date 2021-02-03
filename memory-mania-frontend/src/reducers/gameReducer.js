@@ -30,8 +30,7 @@ export default (state = {name: '', id: '', imageUrls: [], requesting: false, cur
           
         case 'SET_DATA':
             return { ...state,
-                name: action.object.name,
-                id: action.object.id};
+                id: action.object};
 
         case 'SET_GAME_NAME':
             return { ...state,

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EnterUsername from './EnterUsername'
 
 class GameEnder extends Component {
+
+  state = {
+    gameId: ''
+  }
 
 addGame = () => {
     let gameData = {
          "name": this.props.name,
          "time": this.props.time,
          "game_id": this.props.id,
-         "username": 'test',
+         "username": '',
          };
 
     let configObj = {
@@ -22,7 +27,9 @@ addGame = () => {
     fetch('http://localhost:3000/games', configObj)
     .then((response) => response.json())
     .then((object) => {
-      return object
+      this.setState({
+        gameId: object.id
+      })
     });
 }
 
@@ -35,6 +42,7 @@ render () {
         <div>
         <h1>Game Over!</h1>
         <h2>Your Time: {this.props.time}</h2>
+        <EnterUsername gameId={this.state.gameId} />
       <button className="start-button" onClick={() => this.props.startNewGame()}>
           Play Again!
       </button>
