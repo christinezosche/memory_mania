@@ -10,7 +10,7 @@ class GameContainer extends Component {
 
     componentDidMount() {
         this.props.setGameName(this.props.gameName)
-        this.incrementTimesPlayed()
+        this.incrementTimesPlayed(this.props.game_id)
 
         if (this.props.gameName === 'NYT Top Stories') {
             this.props.fetchNyt()
@@ -28,8 +28,22 @@ class GameContainer extends Component {
           }
     }
 
-    incrementTimesPlayed = () => {
-        
+    incrementTimesPlayed = (id) => {
+            let configObj = {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                   "times_played": 1
+                   })
+              };
+            fetch(`http://localhost:3000/game_templates/` + id, configObj)
+            .then((response) => response.json())
+            .then((object) => {
+            return object
+            })
     }
 
     render () {
