@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGifs, fetchMovies, fetchNyt } from '../actions/fetchImages'
+import { fetchGifs } from '../actions/fetchImages'
 import GifSearch from './GifSearch'
 
 class GameStarter extends Component {
@@ -23,16 +23,6 @@ class GameStarter extends Component {
     this.setState({
       searchSubmitted: false
     })
-
-    if (this.props.name === 'NYT Top Stories') {
-      this.props.fetchNyt()
-    }
-    else if (this.props.name === 'Trending TV & Movies') {
-      this.props.fetchMovies()
-    }
-    else if (this.props.name === 'Cat') {
-      this.props.fetchGifs('cat')
-    }
   }
 
   render () {
@@ -77,9 +67,7 @@ class GameStarter extends Component {
   }
 
   const mapDispatchToProps = dispatch => {
-    return { fetchGifs: (searchTerm) => dispatch(fetchGifs(searchTerm)),
-             fetchMovies: () => dispatch(fetchMovies()),
-             fetchNyt: () => dispatch(fetchNyt())
+    return { fetchGifs: (searchTerm) => dispatch(fetchGifs(searchTerm))
             }
   }
  

@@ -28,11 +28,6 @@ class Game extends Component {
         })
     }
 
-    browseOtherGames = () => {
-        this.props.clearGameData()
-        this.props.setGameName('')
-    }
-
     startGame = () => {
         this.setImages(this.props.imageUrls)
         this.setState({

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { setGameName, setImageUrls } from '../actions/games'
-import { NavLink } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class CreateGame extends Component {
 
@@ -22,7 +20,8 @@ class CreateGame extends Component {
             image10: '',
             image11: '',
             image12: '',
-            complete: false
+            complete: false,
+            id: ''
         }
 
     }
@@ -55,8 +54,6 @@ class CreateGame extends Component {
                 complete: true,
                 error: false
             })
-          this.props.setGameName(object.name)
-          this.props.setImageUrls(object.image_urls)
         }
        })
 
@@ -110,25 +107,11 @@ class CreateGame extends Component {
 
         else {
             return (
-                <div>
-                <NavLink to='/'>Play {this.props.name}!</NavLink>
-                </div>
+                 <Redirect to="/games" />
             )
         }
     }
 
 }
-
-    const mapStateToProps = state => {
-        return state
-      }
-    
-    const mapDispatchToProps = dispatch => {
-        return { setGameName: (name) => dispatch(setGameName(name)),
-            setImageUrls: (array) => dispatch(setImageUrls(array)) }
-      }
      
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateGame)
+export default CreateGame

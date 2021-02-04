@@ -11,7 +11,8 @@ class App extends Component {
     games: {
       1: { id: 1, name: 'GIF', creator: '', imageUrls: [], times_played: 12},
       2: { id: 2, name: 'NYT Top Stories', creator: '', imageUrls: [], times_played: 5 },
-      3: { id: 3, name: 'Trending TV & Movies', creator: '', imageUrls: [], times_played: 4 }
+      3: { id: 3, name: 'Trending TV & Movies', creator: '', imageUrls: [], times_played: 4 },
+      4: { id: 4, name: 'Cat', creator: '', imageUrls: [], times_played: 4 }
     }
   }
 
@@ -22,7 +23,7 @@ class App extends Component {
             <NavBar />
             <Route exact path={"/"} render={() => <div>Home</div>} />
             <Route path='/games' render={routerProps => <GamesPage {...routerProps} games={this.state.games}/>} />
-            <Route exact path={"/games/new"} component={CreateGame} />
+            <Route exact path={"/new"} component={CreateGame} />
       </BrowserRouter>
     </div>
   );
