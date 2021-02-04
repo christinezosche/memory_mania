@@ -11,14 +11,17 @@ class GameContainer extends Component {
         if (this.props.name === '') {
             return (
                 <div>
-                <button className="select-button" onClick={() => this.props.setGameName('gif-memory')}>
+                <button className="select-button" onClick={() => this.props.setGameName('GIF')}>
                 Play GIF Memory
                 </button>
-                <button className="select-button" onClick={() => this.props.setGameName('nyt-memory')}>
+                <button className="select-button" onClick={() => this.props.setGameName('NYT Top Stories')}>
                 Play NYT Top Stories Memory
                 </button>
-                <button className="select-button" onClick={() => this.props.setGameName('movie-tv-memory')}>
+                <button className="select-button" onClick={() => this.props.setGameName('Trending TV & Movies')}>
                 Play Trending TV & Movies Memory
+                </button>
+                <button className="select-button" onClick={() => this.props.setGameName('Cat')}>
+                Play Cat Memory
                 </button>
                 </div>
 

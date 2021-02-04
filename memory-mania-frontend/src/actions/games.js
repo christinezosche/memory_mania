@@ -13,6 +13,13 @@
     };
   };
 
+  export const setImageUrls = (array) => {
+    return {
+      type: 'SET_IMAGE_URLS',
+      array
+    };
+  };
+
   export const setGameTime = (time) => {
     return {
       type: 'SET_GAME_TIME',

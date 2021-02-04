@@ -18,7 +18,11 @@ class GameTemplatesController < ApplicationController
 
     def create
         template = GameTemplate.create(name: params[:name], creator: params[:creator], image_urls: params[:imageUrls], times_played: 0)
+        if template.id
         render json: template
+        else
+        render json: { status: "error", code: 4000, message: "Name already taken. Choose another name." }
+        end
     end
 
     def edit

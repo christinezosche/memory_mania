@@ -36,6 +36,10 @@ export default (state = {name: '', id: '', imageUrls: [], requesting: false, cur
             return { ...state,
                     name: action.name};
 
+        case 'SET_IMAGE_URLS':
+            return { ...state,
+                    imageUrls: action.array};
+
         case 'SET_GAME_TIME':
           return { ...state,
             time: action.time };

@@ -50,26 +50,30 @@ class EnterUsername extends Component {
         event.preventDefault()
     }
 
-    renderGameName = () => {
-        if (this.props.name === 'nyt-memory') {
-            return `New York Times Top Stories Memory`
-        }
-        else if (this.props.name === 'gif-memory') {
-            return `GIF Memory`
-        }
-        else if (this.props.name === 'movie-tv-memory') {
-            return `Trending TV & Movies Memory`
-        }
-    }
+    // renderGameName = () => {
+    //     if (this.props.name === 'nyt-memory') {
+    //         return `New York Times Top Stories Memory`
+    //     }
+    //     else if (this.props.name === 'gif-memory') {
+    //         return `GIF Memory`
+    //     }
+    //     else if (this.props.name === 'movie-tv-memory') {
+    //         return `Trending TV & Movies Memory`
+    //     }
+    //     else {
+    //         return `${this.props.name} Memory`
+    //     }
+    // }
 
     render () {
         return (
         <div>
         <form onSubmit={this.handleSubmit}>
-        <label>
+        
         <h1>Your time: {this.props.time}</h1>
-        <h2>You ranked __ in {this.renderGameName()}! Tell the world!</h2>
-
+        <h2>You ranked __ in {this.props.name} Memory! Tell the world!</h2>
+        
+        <label>
         <h3>Enter your name: </h3>
         <input id="username" name="username" type="text" onChange={event => this.handleInputChange(event)} value={this.state.username} placeholder={`i.e., "MemoryManiac1"`} />
         </label>

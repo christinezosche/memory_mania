@@ -24,19 +24,19 @@ class GameStarter extends Component {
       searchSubmitted: false
     })
 
-    if (this.props.name === 'nyt-memory') {
+    if (this.props.name === 'NYT Top Stories') {
       this.props.fetchNyt()
     }
-    else if (this.props.name === 'movie-tv-memory') {
+    else if (this.props.name === 'Trending TV & Movies') {
       this.props.fetchMovies()
     }
-    else if (this.props.name === 'cat-memory') {
+    else if (this.props.name === 'Cat') {
       this.props.fetchGifs('cat')
     }
   }
 
   render () {
-    if (this.props.name === 'gif-memory') { 
+    if (this.props.name === 'GIF') { 
       if (this.state.searchSubmitted === false) {
       return <div><GifSearch submit={this.submit} /></div>
       } 
