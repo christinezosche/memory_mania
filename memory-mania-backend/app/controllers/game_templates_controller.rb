@@ -31,7 +31,8 @@ class GameTemplatesController < ApplicationController
 
     def update
         template = GameTemplate.find(params[:id])
-        template.update(times_played: params[:times_played])
+        number = template.times_played
+        template.update(times_played: number + params[:times_played])
         render json: template
     end
 end
