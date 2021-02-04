@@ -2,9 +2,8 @@
 import React, { Component } from 'react'
 import Game from '../game-components/Game'
 import { connect } from 'react-redux';
-import { setGameName } from '../actions/games'
+import { setGameName, setImageUrls } from '../actions/games'
 import { fetchGifs, fetchMovies, fetchNyt } from '../actions/fetchImages'
-import { setImageUrls } from '../actions/games'
 
 class GameContainer extends Component {
 

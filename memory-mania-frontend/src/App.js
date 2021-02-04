@@ -4,21 +4,14 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import CreateGame from './other-components/CreateGame';
 import NavBar from './other-components/NavBar';
 import GamesPage from './containers/GamesPage';
+import { fetchGameTemplatesData } from './actions/fetchGameData'
+import { connect } from 'react-redux';
 
 class App extends Component {
 
-  state = {
-    games: {
-    }
-  }
 
   componentDidMount() {
-    fetch('http://localhost:3000/game_templates')
-    .then(response => response.json())
-    .then(result => this.setState({
-      games: result
-    })
-    )
+    this.props.fetchGameTemplatesData()
   }
 
   render() {
@@ -27,7 +20,7 @@ class App extends Component {
       <BrowserRouter>
             <NavBar />
             <Route exact path={"/"} render={() => <div>Home</div>} />
-            <Route path='/games' render={routerProps => <GamesPage {...routerProps} games={this.state.games}/>} />
+            <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/new"} component={CreateGame} />
       </BrowserRouter>
     </div>
@@ -35,4 +28,13 @@ class App extends Component {
 }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return state
+}
+
+const mapDispatchToProps = dispatch => {
+  return { fetchGameTemplatesData: () => dispatch(fetchGameTemplatesData())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

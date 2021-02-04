@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { addGameToStore } from '../actions/fetchGameData'
 
 class CreateGame extends Component {
 
@@ -52,8 +54,11 @@ class CreateGame extends Component {
            else {
             this.setState({
                 complete: true,
-                error: false
+                error: false,
+                id: object.id,
+                name: object.name
             })
+            this.props.addGameToStore(object)
         }
        })
 
@@ -108,10 +113,20 @@ class CreateGame extends Component {
         else {
             return (
                  <Redirect to="/games" />
+                //<Link to={`/games/${this.state.id}`}>Play {this.state.name}!</Link>
             )
         }
     }
 
 }
+
+const mapStateToProps = state => {
+    return state
+  }
+
+  const mapDispatchToProps = dispatch => {
+    return { addGameToStore: (object) => dispatch(addGameToStore(object))
+    }
+  }
      
-export default CreateGame
+export default connect(mapStateToProps, mapDispatchToProps)(CreateGame)
