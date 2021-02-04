@@ -78,6 +78,7 @@ class Game extends Component {
     
     componentWillUnmount = () => {
         this.props.clearGameData()
+        this.props.setGameName('')
     }
     
     render () {

@@ -38,11 +38,15 @@ class GameStarter extends Component {
   render () {
     if (this.props.name === 'GIF') { 
       if (this.state.searchSubmitted === false) {
-      return <div><GifSearch submit={this.submit} /></div>
+      return <div>
+        <h1>{this.props.name} Memory</h1>
+        <GifSearch submit={this.submit} />
+        </div>
       } 
       else {
         return (
         <div>
+        <h1>{this.props.name} Memory</h1>
         <button className="start-button" onClick={() => this.props.startGame()}>
           Start Game!
         </button>
@@ -56,6 +60,7 @@ class GameStarter extends Component {
     else {
       return (
       <div>
+      <h1>{this.props.name} Memory</h1>
       <button className="start-button" onClick={() => this.props.startGame()}>
           Start Game!
       </button>
