@@ -46,9 +46,6 @@ render () {
       <button className="start-button" onClick={() => this.props.startNewGame()}>
           Play Again!
       </button>
-      {/* <button className="start-button" onClick={() => this.props.browseOtherGames()}>
-          Browse Other Games!
-      </button> */}
       </div>
     )
   }

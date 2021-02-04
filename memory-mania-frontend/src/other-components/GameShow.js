@@ -5,7 +5,7 @@ const GameShow = (props) => {
  
   return (
     <div>
-      <GameContainer gameName={props.games[props.match.params.gameId].name} imageUrls={props.games[props.match.params.gameId].image_urls}/>
+      <GameContainer gameName={props.games[props.match.params.gameId].name} image_urls={props.games[props.match.params.gameId].image_urls}/>
     </div>
   );
 }

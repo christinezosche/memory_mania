@@ -10,6 +10,7 @@ class GameContainer extends Component {
 
     componentDidMount() {
         this.props.setGameName(this.props.gameName)
+        this.incrementTimesPlayed()
 
         if (this.props.gameName === 'NYT Top Stories') {
             this.props.fetchNyt()
@@ -23,8 +24,12 @@ class GameContainer extends Component {
           else if (this.props.gameName === 'GIF') {
           }
           else {
-              this.props.setImageUrls(this.props.imageUrls)
+              this.props.setImageUrls(this.props.image_urls)
           }
+    }
+
+    incrementTimesPlayed = () => {
+        
     }
 
     render () {

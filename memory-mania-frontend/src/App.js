@@ -9,11 +9,16 @@ class App extends Component {
 
   state = {
     games: {
-      1: { id: 1, name: 'GIF', creator: '', imageUrls: [], times_played: 12},
-      2: { id: 2, name: 'NYT Top Stories', creator: '', imageUrls: [], times_played: 5 },
-      3: { id: 3, name: 'Trending TV & Movies', creator: '', imageUrls: [], times_played: 4 },
-      4: { id: 4, name: 'Cat', creator: '', imageUrls: [], times_played: 4 }
     }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/game_templates')
+    .then(response => response.json())
+    .then(result => this.setState({
+      games: result
+    })
+    )
   }
 
   render() {
