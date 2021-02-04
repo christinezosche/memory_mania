@@ -1,14 +1,14 @@
 class GameTemplatesController < ApplicationController
 
     def index
-        game_templates = GameTemplates.all
-        render json: game_templates
+        templates = GameTemplate.all
+        render json: templates
 
     end
 
     def show
-        game_template = GameTemplate.find(params[:id])
-        render json: game_template
+        template = GameTemplate.find(params[:id])
+        render json: template
     end
 
 
@@ -17,8 +17,8 @@ class GameTemplatesController < ApplicationController
     end
 
     def create
-        game_template = GameTemplate.create(name: params[:name], creator: params[:creator], image_urls: params[:image_urls], times_played: 0)
-        render json: game_template
+        template = GameTemplate.create(name: params[:name], creator: params[:creator], image_urls: params[:imageUrls], times_played: 0)
+        render json: template
     end
 
     def edit
@@ -26,8 +26,8 @@ class GameTemplatesController < ApplicationController
     end
 
     def update
-        game_template = GameTemplate.find(params[:id])
-        game_template.update(times_played: params[:times_played])
-        render json: game_template
+        template = GameTemplate.find(params[:id])
+        template.update(times_played: params[:times_played])
+        render json: template
     end
 end
