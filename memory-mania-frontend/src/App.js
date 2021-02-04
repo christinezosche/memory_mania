@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import CreateGame from './other-components/CreateGame';
 import NavBar from './other-components/NavBar';
 import GamesPage from './containers/GamesPage';
+import StatsContainer from './containers/StatsContainer';
 import { fetchGameTemplatesData } from './actions/fetchGameData'
 import { connect } from 'react-redux';
 
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path={"/"} render={() => <div>Home</div>} />
             <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/new"} component={CreateGame} />
+            <Route exact path={"/stats"} component={StatsContainer} />
       </BrowserRouter>
     </div>
   );

@@ -113,7 +113,6 @@ class CreateGame extends Component {
         else {
             return (
                  <Redirect to="/games" />
-                //<Link to={`/games/${this.state.id}`}>Play {this.state.name}!</Link>
             )
         }
     }
