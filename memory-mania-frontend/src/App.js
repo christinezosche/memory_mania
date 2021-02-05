@@ -8,6 +8,8 @@ import GamesPage from './containers/GamesPage';
 import PlayStats from './stats-components/PlayStats';
 import { fetchGameTemplatesData } from './actions/fetchGameData'
 import { connect } from 'react-redux'
+import GameStats from './stats-components/GameStats';
+import StatsPage from './stats-components/StatsPage';
 
 class App extends Component {
 
@@ -24,7 +26,9 @@ class App extends Component {
             <Route exact path={"/"} render={() => <div>Home</div>} />
             <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/games/new"} component={CreateGame} />
-            <Route exact path={"/stats"} component={PlayStats} />
+            <Route exact path={"/stats"} component={StatsPage} />
+            <Route exact path={"/gamestats"} component={GameStats} />
+            <Route exact path={"/playstats"} component={PlayStats} />
       </div>
       </Router>
     </div>

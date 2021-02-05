@@ -50,21 +50,6 @@ class EnterUsername extends Component {
         event.preventDefault()
     }
 
-    // renderGameName = () => {
-    //     if (this.props.name === 'nyt-memory') {
-    //         return `New York Times Top Stories Memory`
-    //     }
-    //     else if (this.props.name === 'gif-memory') {
-    //         return `GIF Memory`
-    //     }
-    //     else if (this.props.name === 'movie-tv-memory') {
-    //         return `Trending TV & Movies Memory`
-    //     }
-    //     else {
-    //         return `${this.props.name} Memory`
-    //     }
-    // }
-
     render () {
         return (
         <div>

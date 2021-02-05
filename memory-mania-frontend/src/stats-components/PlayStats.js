@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class PlayStats extends Component {
 
-    renderList = () => {
+    renderMostPlayedList = () => {
         let array = [...this.props.games]
         array.sort((a, b) => {
             return b.times_played - a.times_played
@@ -12,18 +12,37 @@ class PlayStats extends Component {
         let shortArray = array.slice(0,5)
         return (
         <div>
-        <ul>
-        {shortArray.map(object => <li><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>, {object.times_played}</li>)}
-        </ul>
+        <h3>Most Played Games</h3>
+        
+        {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>: {object.times_played} plays</p>)}
+        
         </div>
         )
     }
+
+    renderNewList = () => {
+      let array = [...this.props.games]
+      array.sort((a, b) => {
+          return b.id - a.id
+        });
+      let shortArray = array.slice(0,5)
+      return (
+      <div>
+      <h3>Newest Games</h3>
+      
+      {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link></p>)}
+      
+      </div>
+      )
+  }
 
     render () {
         return (
     
         <div>
-        {this.renderList()}
+        {this.renderMostPlayedList()}
+        {this.renderNewList()}
+        <h3><Link to={'/games'}>See All Games</Link></h3>
         </div>
         )
     }
