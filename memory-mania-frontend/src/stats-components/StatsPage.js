@@ -26,7 +26,7 @@ class StatsPage extends Component {
         <div>
         <h3>All Games</h3>
         <ol>
-        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{this.renderUsername(object)} - {object.name} - {object.time}</li>)}
+        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{this.renderUsername(object)} - {object.name} Memory - {object.time}</li>)}
         </ol>
         </div>
         )

@@ -55,8 +55,7 @@ class EnterUsername extends Component {
         <div>
         <form onSubmit={this.handleSubmit}>
         
-        <h1>Your time: {this.props.time}</h1>
-        <h2>You ranked __ in {this.props.name} Memory! Tell the world!</h2>
+        <h2>You completed {this.props.name} Memory in {this.props.time}! Tell the world!</h2>
         
         <label>
         <h3>Enter your name: </h3>

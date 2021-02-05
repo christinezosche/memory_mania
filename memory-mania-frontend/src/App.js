@@ -5,11 +5,10 @@ import { BrowserRouter as Router,
 import CreateGame from './other-components/CreateGame';
 import NavBar from './other-components/NavBar';
 import GamesPage from './containers/GamesPage';
-import PlayStats from './stats-components/PlayStats';
 import { fetchGameTemplatesData } from './actions/fetchGameData'
 import { connect } from 'react-redux'
-import GameStats from './stats-components/GameStats';
 import StatsPage from './stats-components/StatsPage';
+import Home from './other-components/Home'
 
 class App extends Component {
 
@@ -23,12 +22,10 @@ class App extends Component {
       <Router>
       <div>
             <NavBar />
-            <Route exact path={"/"} render={() => <div>Home</div>} />
+            <Route exact path={"/"} component={Home} />
             <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/games/new"} component={CreateGame} />
             <Route exact path={"/stats"} component={StatsPage} />
-            <Route exact path={"/gamestats"} component={GameStats} />
-            <Route exact path={"/playstats"} component={PlayStats} />
       </div>
       </Router>
     </div>

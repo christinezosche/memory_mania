@@ -11,7 +11,6 @@ class GameStats extends Component {
     componentDidMount () {
         fetch('http://localhost:3000/games')
         .then(response => response.json())
-        // .then(array => console.log(array))
         .then(array => this.setState({
             gameStats: array
         }))
@@ -28,7 +27,7 @@ class GameStats extends Component {
         <div>
         <h3>Top Stats - All Games</h3>
         <ol>
-        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.name} - {object.time}</li>)}
+        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
         </ol>
         </div>
         )
@@ -52,14 +51,6 @@ class GameStats extends Component {
         </div>
         )
     }
-
-    // topGames = () => {
-    //     let games = [...this.props.games]
-    //     games.sort((a, b) => {
-    //         return b.times_played - a.times_played
-    //       });
-    //       topGames = games.slice(0,2)
-    // }
 
     renderTopGameStats = () => {
         let games = [...this.props.games]
