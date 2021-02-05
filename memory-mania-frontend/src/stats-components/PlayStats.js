@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class PlayStats extends Component {
 
@@ -12,7 +13,7 @@ class PlayStats extends Component {
         return (
         <div>
         <ul>
-        {shortArray.map(object => <li>{object.name} Memory, {object.times_played}</li>)}
+        {shortArray.map(object => <li><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>, {object.times_played}</li>)}
         </ul>
         </div>
         )

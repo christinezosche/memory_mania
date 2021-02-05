@@ -1,13 +1,22 @@
 import React from 'react';
 import GameContainer from '../containers/GameContainer'
+import { connect } from 'react-redux';
 
-const GameShow = (props) => {
- 
-  return (
-    <div>
-      <GameContainer gameName={props.games[props.match.params.gameId].name} image_urls={props.games[props.match.params.gameId].image_urls} game_id={props.games[props.match.params.gameId].id}/>
-    </div>
-  );
+
+ const GameShow = (props) => {
+    const game = props.games[props.match.params.gameId]
+
+        if (!game) {
+          return null;
+        }
+        else {
+        return <GameContainer game={game} /> 
+        }
+  
 }
- 
-export default GameShow;
+
+ const mapStateToProps = state => {
+   return state
+ }
+
+ export default connect(mapStateToProps)(GameShow)

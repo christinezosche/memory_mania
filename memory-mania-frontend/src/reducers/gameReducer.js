@@ -16,7 +16,9 @@ export default (state = {games: [], name: '', id: '', imageUrls: [], requesting:
         case 'ADD_GAME_TEMPLATES':
             return {
                 ...state,
-                games: action.games,
+                games: action.games.sort((a, b) => {
+                    return a.id - b.id
+                  }),
                 requesting: false
         };
 

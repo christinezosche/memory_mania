@@ -8,22 +8,22 @@ import { fetchGifs, fetchMovies, fetchNyt } from '../actions/fetchImages'
 class GameContainer extends Component {
 
     componentDidMount() {
-        this.props.setGameName(this.props.gameName)
-        this.incrementTimesPlayed(this.props.game_id)
+        this.props.setGameName(this.props.game.name)
+        this.incrementTimesPlayed(this.props.game.id)
 
-        if (this.props.gameName === 'NYT Top Stories') {
+        if (this.props.game.name=== 'NYT Top Stories') {
             this.props.fetchNyt()
           }
-          else if (this.props.gameName === 'Trending TV & Movies') {
+          else if (this.props.game.name === 'Trending TV & Movies') {
             this.props.fetchMovies()
           }
-          else if (this.props.gameName === 'Cat') {
+          else if (this.props.game.name === 'Cat') {
             this.props.fetchGifs('cat')
           }
-          else if (this.props.gameName === 'GIF') {
+          else if (this.props.game.name === 'GIF') {
           }
           else {
-              this.props.setImageUrls(this.props.image_urls)
+              this.props.setImageUrls(this.props.game.image_urls)
           }
     }
 
