@@ -10,7 +10,7 @@ class Menu extends Component {
         return (
         <div>
         <h1>Memory Mania!</h1>
-        {shortArray.map(object => <h2 key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link></h2>)}
+        {shortArray.map(object => <h2 key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`} >{object.name} Memory</Link></h2>)}
         </div>
         )
     }

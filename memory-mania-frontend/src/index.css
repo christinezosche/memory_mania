@@ -18,6 +18,47 @@ code {
   justify-content: center;
 } 
 
+.nav-bar {
+  height: 30px;
+  background-color: #5c0ac7;
+  font-family: Rockwell Extra Bold
+}
+h1 {
+  font-family: Rockwell Extra Bold;
+  color: #5c0ac7;
+}
+
+h2 {
+  font-family: Rockwell;
+  color: #5c0ac7;
+}
+
+h3 {
+  font-family: Rockwell;
+  color: #5c0ac7;
+}
+
+a:link {
+  font-family: Rockwell;
+  font-weight: bold;
+  color: black
+
+}
+
+a:visited {
+  font-family: Rockwell;
+  font-weight: bold;
+  color: black
+
+}
+
+a:hover {
+  font-family: Rockwell;
+  font-weight: bold;
+  color: #5c0ac7;
+  text-decoration: none
+}
+
  .game-container {
   width: 1000px;
   height: 475px;
