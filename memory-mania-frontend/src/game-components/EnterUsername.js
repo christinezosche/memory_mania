@@ -35,6 +35,7 @@ class EnterUsername extends Component {
             }
           };
         this.props.deleteScore(id, configObj)
+        this.props.changePopUpState()
     }
 
     handleInputChange = event => {
@@ -45,6 +46,7 @@ class EnterUsername extends Component {
 
     handleSubmit = event => {
         this.addUsername(this.props.statId, this.state.username)
+        this.props.changePopUpState()
         event.preventDefault()
     }
 

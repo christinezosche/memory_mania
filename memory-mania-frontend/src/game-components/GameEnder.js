@@ -5,7 +5,8 @@ import EnterUsername from './EnterUsername'
 class GameEnder extends Component {
 
   state = {
-    statId: ''
+    statId: '',
+    renderUsernamePopUp: true
   }
 
 addGame = () => {
@@ -33,22 +34,40 @@ addGame = () => {
     });
 }
 
+changePopUpState = () => {
+  this.setState({
+    renderUsernamePopUp: false
+  })
+}
+
 
 componentDidMount () {
   this.addGame()
 }
 
 render () {
+
+  if (this.state.renderUsernamePopUp === true) {
     return (
         <div>
+        
+        <EnterUsername statId={this.state.statId} changePopUpState={this.changePopUpState}/>
+      
+      </div>
+    )
+    }
+  else {
+    return (
+      <div>
         <h1>Game Over!</h1>
         <h2>Your Time: {this.props.time}</h2>
-        <EnterUsername statId={this.state.statId} />
       <button className="start-button" onClick={() => this.props.startNewGame()}>
           Play Again!
       </button>
       </div>
+
     )
+  }
   }
 }
 
