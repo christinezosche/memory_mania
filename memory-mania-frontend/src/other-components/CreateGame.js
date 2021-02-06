@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { addGameToStore } from '../actions/fetchGameData'
+import { addGameToStore, resetComplete } from '../actions/fetchGameData'
 
 class CreateGame extends Component {
 
@@ -21,9 +21,7 @@ class CreateGame extends Component {
             image9: '',
             image10: '',
             image11: '',
-            image12: '',
-            complete: false,
-            id: ''
+            image12: ''
         }
 
     }
@@ -43,24 +41,7 @@ class CreateGame extends Component {
                 },
                 body: JSON.stringify(gameData)
               };
-       fetch('http://localhost:3000/game_templates', configObj)
-       .then((response) => response.json())
-       .then((object) => {
-           if (object.status === "error") {
-            this.setState({
-                error: true
-            })
-           }
-           else {
-            this.setState({
-                complete: true,
-                error: false,
-                id: object.id,
-                name: object.name
-            })
-            this.props.addGameToStore(object)
-        }
-       })
+        this.props.addGameToStore(configObj)
 
     event.preventDefault()
     }
@@ -72,14 +53,18 @@ class CreateGame extends Component {
     }
 
     renderError = () => {
-        if (this.state.error === true) {
+        if (this.props.error === true) {
             return <div className="error">Name already taken. Choose another name.</div>
         }
     }
 
+    resetComplete = () => {
+        this.props.resetComplete()
+    }
+
     render () {
 
-        if (this.state.complete === false) {
+        if (this.props.successfulSubmit === false) {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -112,7 +97,7 @@ class CreateGame extends Component {
 
         else {
             return (
-                 <Redirect to="/games" />
+                 <Link to={`/games/${this.props.games.length-1}`} onClick={this.resetComplete} >Play {this.props.games[this.props.games.length-1].name} Memory!</Link>
             )
         }
     }
@@ -124,7 +109,8 @@ const mapStateToProps = state => {
   }
 
   const mapDispatchToProps = dispatch => {
-    return { addGameToStore: (object) => dispatch(addGameToStore(object))
+    return { addGameToStore: (object) => dispatch(addGameToStore(object)),
+        resetComplete: () => dispatch(resetComplete())
     }
   }
      

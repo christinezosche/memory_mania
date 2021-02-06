@@ -16,9 +16,24 @@ export function fetchGameTemplatesData() {
     };
   }
 
-  export const addGameToStore = (object) => {
+  export const resetComplete = () => {
     return {
-      type: 'ADD_GAME_TO_STORE',
-      object
+      type: 'RESET_COMPLETE'
     };
   };
+
+  export function addGameToStore(configObj) {
+    return (dispatch) => {
+      dispatch({ type: 'START_ADDING_REQUEST' });
+      fetch('http://localhost:3000/game_templates', configObj)
+       .then((response) => response.json())
+       .then((object) => {
+           if (object.status === "error") {
+            dispatch({ type: 'SET_ERROR' })
+           }
+           else {
+            dispatch({ type: 'ADD_GAME_TO_STORE', object })
+           }
+        })
+  }
+}
