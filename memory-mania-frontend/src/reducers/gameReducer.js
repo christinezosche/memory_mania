@@ -1,16 +1,19 @@
-export default (state = {games: [], name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
+export default (state = {games: [], stats: [], name: '', id: '', imageUrls: [], requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' }, action) => {
     switch (action.type) {
 
-        case 'START_ADDING_IMAGES_REQUEST':
+        case 'START_ADDING_REQUEST':
             return {
                 ...state,
                 requesting: true
         };
 
-        case 'START_ADDING_GAME_TEMPLATES_REQUEST':
+        case 'ADD_STATS':
             return {
                 ...state,
-                requesting: true
+                stats: action.stats.sort((a, b) => {
+                    return a.id - b.id
+                  }),
+                requesting: false
         };
 
         case 'ADD_GAME_TEMPLATES':

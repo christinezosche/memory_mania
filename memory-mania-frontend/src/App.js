@@ -5,7 +5,7 @@ import { BrowserRouter as Router,
 import CreateGame from './other-components/CreateGame';
 import NavBar from './other-components/NavBar';
 import GamesPage from './containers/GamesPage';
-import { fetchGameTemplatesData } from './actions/fetchGameData'
+import { fetchGameTemplatesData, fetchStats } from './actions/fetchGameData'
 import { connect } from 'react-redux'
 import StatsPage from './stats-components/StatsPage';
 import Home from './other-components/Home'
@@ -14,9 +14,18 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchGameTemplatesData()
+    this.props.fetchStats()
   }
 
   render() {
+  if (this.props.requesting === true) {
+    return (
+      <div className="App">
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
+  else {
   return (
     <div className="App">
       <Router>
@@ -30,6 +39,7 @@ class App extends Component {
       </Router>
     </div>
   );
+  }
 }
 }
 
@@ -38,7 +48,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { fetchGameTemplatesData: () => dispatch(fetchGameTemplatesData())
+  return { fetchGameTemplatesData: () => dispatch(fetchGameTemplatesData()),
+    fetchStats: () => dispatch(fetchStats())
   }
 }
 

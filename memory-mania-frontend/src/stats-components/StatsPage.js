@@ -3,21 +3,8 @@ import { connect } from 'react-redux';
 
 class StatsPage extends Component {
 
-    state = {
-        gameStats: ''
-    }
-
-    componentDidMount () {
-        fetch('http://localhost:3000/games')
-        .then(response => response.json())
-        // .then(array => console.log(array))
-        .then(array => this.setState({
-            gameStats: array
-        }))
-    }
-
     renderBestTimeList = () => {
-        let array = [...this.state.gameStats]
+        let array = [...this.props.stats]
         array.sort((a, b) => {
             return a.time - b.time
           });
@@ -34,7 +21,7 @@ class StatsPage extends Component {
 
     
     renderBestTimeForGamesList = (gameName) => {
-        let array = [...this.state.gameStats]
+        let array = [...this.props.stats]
         let filteredArray = array.filter(stat => stat.name === gameName) 
         filteredArray.sort((a, b) => {
             return a.time - b.time
