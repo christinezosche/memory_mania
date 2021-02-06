@@ -47,7 +47,7 @@ class GameContainer extends Component {
 
     render () {
         return (
-        <div><Game /></div>
+        <div><Game gameId={this.props.game.id} incrementTimesPlayed={this.incrementTimesPlayed}/></div>
         )
     }
 

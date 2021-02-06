@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addUsername, deleteScore } from '../actions/fetchGameData'
 
 class EnterUsername extends Component {
 
@@ -21,11 +22,8 @@ class EnterUsername extends Component {
                "username": username
                })
           };
-        fetch(`http://localhost:3000/games/` + id, configObj)
-        .then((response) => response.json())
-        .then((object) => {
-        return object
-        })
+
+          this.props.addUsername(id, configObj)
     }
 
     deleteScore = (id) => {
@@ -36,7 +34,7 @@ class EnterUsername extends Component {
               "Accept": "application/json"
             }
           };
-        fetch(`http://localhost:3000/games/` + id, configObj)
+        this.props.deleteScore(id, configObj)
     }
 
     handleInputChange = event => {
@@ -46,7 +44,7 @@ class EnterUsername extends Component {
     }
 
     handleSubmit = event => {
-        this.addUsername(this.props.gameId, this.state.username)
+        this.addUsername(this.props.statId, this.state.username)
         event.preventDefault()
     }
 
@@ -63,7 +61,7 @@ class EnterUsername extends Component {
         </label>
         <button type="submit">Enter</button>
         </form>
-        <button onClick={() => this.deleteScore(this.props.gameId)}>Delete My Time</button>
+        <button onClick={() => this.deleteScore(this.props.statId)}>Delete My Time</button>
         </div>
         )
     }
@@ -72,4 +70,10 @@ const mapStateToProps = state => {
     return state
   }
 
-export default connect(mapStateToProps)(EnterUsername)
+const mapDispatchToProps = dispatch => {
+    return { addUsername: (id, configObj) => dispatch(addUsername(id, configObj)),
+      deleteScore: (id, configObj) => dispatch(deleteScore(id, configObj))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnterUsername)

@@ -119,7 +119,7 @@ export default (state = {games: [], stats: [], name: '', id: '', imageUrls: [], 
         case 'CLEAR_GAME_DATA':
             return {
                 ...state,
-                id: '', currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' };
+                id: '', error: false, successfulSubmit: false, requesting: false, currentPair: [], completedPairs: [], holdImages: [], postClickDelay: false, gameComplete: false, newTurn: false, time: '' };
 
         default:
           return state;

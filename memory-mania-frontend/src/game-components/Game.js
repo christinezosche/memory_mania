@@ -26,7 +26,9 @@ class Game extends Component {
             id: newId,
             newGame: true
         })
+        this.props.incrementTimesPlayed(this.props.gameId)
     }
+
 
     startGame = () => {
         this.setImages(this.props.imageUrls)
@@ -81,7 +83,7 @@ class Game extends Component {
             return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
         }
         else if (this.props.gameComplete === true) {
-            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} browseOtherGames={this.browseOtherGames}/></div>
+            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} /></div>
         }
         else {
         return (

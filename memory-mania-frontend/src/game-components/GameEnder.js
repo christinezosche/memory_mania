@@ -5,7 +5,7 @@ import EnterUsername from './EnterUsername'
 class GameEnder extends Component {
 
   state = {
-    gameId: ''
+    statId: ''
   }
 
 addGame = () => {
@@ -28,10 +28,11 @@ addGame = () => {
     .then((response) => response.json())
     .then((object) => {
       this.setState({
-        gameId: object.id
+        statId: object.id
       })
     });
 }
+
 
 componentDidMount () {
   this.addGame()
@@ -42,7 +43,7 @@ render () {
         <div>
         <h1>Game Over!</h1>
         <h2>Your Time: {this.props.time}</h2>
-        <EnterUsername gameId={this.state.gameId} />
+        <EnterUsername statId={this.state.statId} />
       <button className="start-button" onClick={() => this.props.startNewGame()}>
           Play Again!
       </button>
@@ -54,5 +55,6 @@ render () {
   const mapStateToProps = state => {
     return state
   }
+
 
 export default connect(mapStateToProps)(GameEnder)

@@ -18,14 +18,6 @@ class App extends Component {
   }
 
   render() {
-  if (this.props.requesting === true) {
-    return (
-      <div className="App">
-        <h3>Loading...</h3>
-      </div>
-    );
-  }
-  else {
   return (
     <div className="App">
       <Router>
@@ -39,7 +31,6 @@ class App extends Component {
       </Router>
     </div>
   );
-  }
 }
 }
 

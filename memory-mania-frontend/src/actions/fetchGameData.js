@@ -37,3 +37,27 @@ export function fetchGameTemplatesData() {
         })
   }
 }
+
+export function incrementTimesPlayed (id, configObj) {
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_REQUEST' });
+    fetch(`http://localhost:3000/game_templates/` + id, configObj)
+    .then((response) => response.json())
+  }
+}
+
+export function addUsername(id, configObj) {
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_REQUEST' });
+    fetch(`http://localhost:3000/games/` + id, configObj)
+    .then((response) => response.json())
+  }
+}
+
+export function deleteScore(id, configObj) {
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_REQUEST' });
+    fetch(`http://localhost:3000/games/` + id, configObj)
+    .then((response) => response.json())
+  }
+}
