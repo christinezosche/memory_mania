@@ -54,7 +54,6 @@ class PlayStats extends Component {
 }
 const styles = {
   list: {
-  //   borderRadius: 55,
     padding: '1rem',
     textAlign: "left"
 

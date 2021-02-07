@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
- 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const GamesList = (props) => {
   let allGames = props.games
   
@@ -11,8 +14,8 @@ const GamesList = (props) => {
   }
   const renderAllGames = (gameArray) => {
     let array = [...gameArray] 
-    return (<div>
-    <h3>All Games</h3>
+    return (<div className='list'>
+    <h3 style={styles.h}>All Games</h3>
     {array.map(object => <p key={gameArray.indexOf(object)}><Link to={`/games/${gameArray.indexOf(object)}`}>{object.name} Memory</Link>{renderCreatorName(object)}</p>)}
     </div>)
   }
@@ -24,8 +27,8 @@ const GamesList = (props) => {
       });
     let shortArray = array.slice(0,15)
     return (
-    <div>
-    <h3>Most Played Games</h3>
+    <div className='list'>
+    <h3 style={styles.h}>Most Played Games</h3>
     
     {shortArray.map(object => <p key={gameArray.indexOf(object)}><Link to={`/games/${gameArray.indexOf(object)}`}>{object.name} Memory</Link>{renderCreatorName(object)}</p>)}
     
@@ -40,8 +43,8 @@ const renderNewGames = (gameArray) => {
     });
   let shortArray = array.slice(0,15)
   return (
-  <div>
-  <h3>Newest Games</h3>
+  <div className='list'>
+  <h3 style={styles.h}>Newest Games</h3>
   
   {shortArray.map(object => <p key={gameArray.indexOf(object)}><Link to={`/games/${gameArray.indexOf(object)}`}>{object.name} Memory</Link>{renderCreatorName(object)}</p>)}
   
@@ -51,15 +54,33 @@ const renderNewGames = (gameArray) => {
 
   return (
       <div>
-       
-      {renderTopGames(allGames)}
-      
-      {renderNewGames(allGames)}
-          
-      {renderAllGames(allGames)}
+
+        <Container fluid style={styles.list}>
+        <Row>
+            <Col>{renderTopGames(allGames)}</Col>
+            <Col>{renderNewGames(allGames)}</Col>
+        </Row>
+        <Row>
+            <Col></Col>
+            <Col xs={8}>{renderAllGames(allGames)}</Col>
+            <Col></Col>
+        </Row>
+        </Container>
+    
       </div>
 
   );
 };
+
+const styles = {
+  list: {
+    padding: '1rem',
+    textAlign: "left"
+
+  },
+  h: {
+    textAlign: "center",
+  }
+}
  
 export default GamesList;

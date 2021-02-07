@@ -85,16 +85,8 @@ class Menu extends Component {
     const styles = {
         card: {
           backgroundColor: 'teal',
-        //   borderRadius: 55,
           padding: '4rem',
           color: 'white'
-        },
-        h: {
-        color: 'white'
-        },
-
-        link: {
-        color: '#5c0ac7'
         }
       }
 

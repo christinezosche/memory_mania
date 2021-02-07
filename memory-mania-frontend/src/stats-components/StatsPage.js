@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Container from 'react-bootstrap/Container';
 
 class StatsPage extends Component {
 
@@ -11,7 +12,7 @@ class StatsPage extends Component {
         let shortArray = array.slice(0,25)
         return (
         <div>
-        <h3>All Games</h3>
+        <h3 style={styles.h}>All Games</h3>
         <ol>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{this.renderUsername(object)} - {object.name} Memory - {object.time}</li>)}
         </ol>
@@ -29,7 +30,7 @@ class StatsPage extends Component {
         let shortArray = filteredArray.slice(0,25)
         return (
         <div>
-        <h3>{gameName} Memory</h3>
+        <h3 style={styles.h}>{gameName} Memory</h3>
         <ol>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{this.renderUsername(object)} - {object.time}</li>)}
         </ol>
@@ -61,16 +62,29 @@ class StatsPage extends Component {
     render () {
         return (
         <div>
-        <h1>Top Stats</h1>
+        <Container fluid style={styles.list}>
+        <h1 style={styles.h}>Top Stats</h1>
+        <br></br>
         {this.renderBestTimeList()}
         {this.renderTopGameStats()}
-
+        </Container>
         </div>
 
         )
     }
 
 }
+
+const styles = {
+    list: {
+      padding: '1rem',
+      textAlign: "left"
+  
+    },
+    h: {
+      textAlign: "center",
+    }
+  }
 const mapStateToProps = state => {
     return state
   }
