@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { addGameToStore, resetComplete } from '../actions/fetchGameData'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class CreateGame extends Component {
 
@@ -54,7 +57,7 @@ class CreateGame extends Component {
 
     renderError = () => {
         if (this.props.error === true) {
-            return <div className="error">Name already taken. Choose another name.</div>
+            return <h5 style={styles.error}>Name already taken. Choose another name.</h5>
         }
     }
 
@@ -67,42 +70,78 @@ class CreateGame extends Component {
         if (this.props.successfulSubmit === false) {
         return (
             <div>
+            <Container fluid>
+
                 <form onSubmit={this.handleSubmit}>
-                <label>Enter a name for this game:</label>
-                <input id="name" name="name" type="text" onChange={event => this.handleInputChange(event)} value={this.state.name} placeholder={`i.e., "Cats on Vacation"`} required />
 
-                <label>Enter your name:</label>
-                <input id="creator" name="creator" type="text" onChange={event => this.handleInputChange(event)} value={this.state.creator} placeholder={`i.e., "MemoryManiac1"`} required />
-
-                <label>Enter image URLs:</label>
-                <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image2" name="image2" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image2} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image3" name="image3" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image3} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image4" name="image4" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image4} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image5" name="image5" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image5} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image6" name="image6" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image6} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image7" name="image7" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image7} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image8" name="image8" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image8} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image9" name="image9" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image9} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image10" name="image10" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image10} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image11" name="image11" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image11} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-                <input id="image12" name="image12" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image12} placeholder={`i.e., "https://myimage.com/image.jpg"`} required />
-
+                <Row>
+                <Col><h5><label style={styles.form}>Enter a name for this game:</label></h5>
+                <input id="name" name="name" type="text" onChange={event => this.handleInputChange(event)} value={this.state.name} placeholder={`i.e., "Cats on Vacation"`} required /></Col>
+                <br></br>
+                <Col><h5><label style={styles.form}>Enter your name:</label></h5>
+                <input id="creator" name="creator" type="text" onChange={event => this.handleInputChange(event)} value={this.state.creator} placeholder={`i.e., "MemoryManiac1"`} required /></Col>
+                <br></br>
+                </Row>
+                <Row>
+                    
+                <Col><h5><label style={styles.form}>Enter image URLs:</label></h5>
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image2" name="image2" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image2} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image3" name="image3" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image3} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image4" name="image4" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image4} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image5" name="image5" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image5} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image6" name="image6" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image6} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                </Col>
+                <Col>
+                <input id="image7" name="image7" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image7} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image8" name="image8" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image8} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image9" name="image9" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image9} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image10" name="image10" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image10} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image11" name="image11" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image11} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image12" name="image12" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image12} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                </Col>
+                </Row>
+                <br></br>
+               
                 <button type="submit">Submit</button>
+
                 </form>
                 {this.renderError()}
+            </Container>
             </div>
         )
         }
 
         else {
             return (
-                 <Link to={`/games/${this.props.games.length-1}`} onClick={this.resetComplete} >Play {this.props.games[this.props.games.length-1].name} Memory!</Link>
+                <h4 style={styles.h}><Link to={`/games/${this.props.games.length-1}`} onClick={this.resetComplete} >Play {this.props.games[this.props.games.length-1].name} Memory!</Link></h4>
             )
         }
     }
 
 }
+
+const styles = {
+
+    form: {
+      padding: '1rem',
+      textAlign: "center"
+  
+    },
+    error: {
+        padding: '1rem',
+        textAlign: "center",
+        color: 'red'
+    },
+    h: {
+        padding: '3rem',
+        textAlign: "center"
+    }
+  }
 
 const mapStateToProps = state => {
     return state
