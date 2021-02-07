@@ -15,7 +15,7 @@ class PlayStats extends Component {
         <div>
         <h5 style={styles.h}>Most Played Games</h5>
         <div className='list'>
-        {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>: {object.times_played} plays</p>)}
+        {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>: Played {object.times_played} times</p>)}
         </div>
         </div>
         )
