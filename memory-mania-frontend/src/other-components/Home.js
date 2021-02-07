@@ -14,7 +14,7 @@ class Home extends Component {
         <Container fluid>
         <Row>
             <Col><GameStats /></Col>
-            <Col xs={7}><Menu /></Col>
+            <Col xs={6}><Menu /></Col>
             <Col><PlayStats /></Col>
         </Row>
         </Container>

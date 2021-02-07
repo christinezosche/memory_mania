@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
  
@@ -7,14 +6,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-         <Navbar variant="dark" className="nav-bar">
+         <Navbar className="nav-bar">
            <Nav>
-          <Navbar.Brand href="/home">Memory Mania!</Navbar.Brand>
+          <Navbar.Brand href="/home" style={styles.brand}>Memory Mania!</Navbar.Brand>
           </Nav>
             <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/games">Games</Nav.Link>
-            <Nav.Link href="/stats">Stats</Nav.Link>
+            <Nav.Link href="/" style={styles.link}>Home</Nav.Link>
+            <Nav.Link href="/games" style={styles.link}>Games</Nav.Link>
+            <Nav.Link href="/stats" style={styles.link}>Stats</Nav.Link>
             </Nav>
           </Navbar> 
 
@@ -22,5 +21,18 @@ class NavBar extends React.Component {
     )
   }
 }
- 
+
+const styles = {
+  brand: {
+  //   borderRadius: 55,
+    padding: '1rem',
+    textAlign: "left",
+    color: 'white'
+
+  },
+  link: {
+    textAlign: "center",
+    color: 'teal'
+  }
+}
 export default NavBar;

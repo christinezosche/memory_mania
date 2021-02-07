@@ -23,37 +23,58 @@ code {
   background-color: #5c0ac7;
   font-family: Rockwell Extra Bold
 }
+
+
+.list {
+  font-size: 14px;
+  line-height: 1
+}
+
 h1 {
   font-family: Rockwell Extra Bold;
-  color: #5c0ac7;
+  color: teal;
 }
 
 h2 {
   font-family: Rockwell;
-  color: #5c0ac7;
+  color: teal;
 }
 
 h3 {
   font-family: Rockwell;
-  color: #5c0ac7;
+  color: teal;
+}
+
+h4 {
+  font-family: Rockwell;
+  color: teal;
+}
+
+h5 {
+  font-family: Rockwell;
+  color: teal;
+}
+
+h6 {
+  font-family: Rockwell;
+  color: teal;
 }
 
 a:link {
-  font-family: Rockwell;
   font-weight: bold;
-  color: black
+  color: #5c0ac7
 
 }
 
 a:visited {
-  font-family: Rockwell;
+  
   font-weight: bold;
-  color: black
+  color: #5c0ac7
 
 }
 
 a:hover {
-  font-family: Rockwell;
+
   font-weight: bold;
   color: #5c0ac7;
   text-decoration: none

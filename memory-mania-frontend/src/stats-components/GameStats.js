@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 
 class GameStats extends Component {
 
@@ -12,8 +13,9 @@ class GameStats extends Component {
         let noAnonymous = array.filter(game => game.username !== '')
         let shortArray = noAnonymous.slice(0,5)
         return (
-        <div>
-        <h3>Top Stats - All Games</h3>
+        <div className='list'>
+        <h4 style={styles.h}>Top Stats</h4>
+        <h6 style={styles.h}>All Games</h6>
         <ol>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
         </ol>
@@ -31,11 +33,12 @@ class GameStats extends Component {
         let noAnonymous = filteredArray.filter(game => game.username !== '')
         let shortArray = noAnonymous.slice(0,5)
         return (
-        <div>
-        <h3>Top Stats - {gameName} Memory</h3>
+        <div className='list'>
+        <h6 style={styles.h}>{gameName} Memory</h6>
         <ol>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.time}</li>)}
         </ol>
+        <br></br>
         </div>
         )
     }
@@ -53,12 +56,27 @@ class GameStats extends Component {
         return (
     
         <div>
+        <Container fluid style={styles.list}>
         {this.renderBestTimeList()}
+        <br></br>
         {this.renderTopGameStats()}
-        <h3><Link to={'/stats'}>See More Stats</Link></h3>
+        <br></br>
+        <h5 style={styles.h}><Link to={'/stats'}>See More Stats</Link></h5>
+        </Container>
         </div>
         )
     }
+}
+
+const styles = {
+  list: {
+    padding: '1rem',
+    textAlign: "left"
+
+  },
+  h: {
+    textAlign: "center",
+  }
 }
 
 const mapStateToProps = state => {
