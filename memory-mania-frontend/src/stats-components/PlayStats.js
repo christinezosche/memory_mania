@@ -15,10 +15,19 @@ class PlayStats extends Component {
         <div>
         <h5 style={styles.h}>Most Played Games</h5>
         <div className='list'>
-        {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>: Played {object.times_played} times</p>)}
+        {shortArray.map(object => <p key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`}>{object.name} Memory</Link>: {this.renderPlays(object)}</p>)}
         </div>
         </div>
         )
+    }
+
+    renderPlays = (object) => {
+      if (object.times_played === 1) {
+       return `Played 1 time`
+      }
+      else {
+        return `Played ${object.times_played} times`
+      }
     }
 
     renderNewList = () => {
