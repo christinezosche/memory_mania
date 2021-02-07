@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EnterUsername from './EnterUsername'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button';
 
 class GameEnder extends Component {
 
@@ -50,24 +52,32 @@ render () {
   if (this.state.renderUsernamePopUp === true) {
     return (
         <div>
-        
+        <Container fluid>
         <EnterUsername statId={this.state.statId} changePopUpState={this.changePopUpState}/>
-      
+        </Container>
       </div>
     )
     }
   else {
     return (
       <div>
+        <Container fluid>
         <h1>Game Over!</h1>
-        <h2>Your Time: {this.props.time}</h2>
-      <button className="start-button" onClick={() => this.props.startNewGame()}>
+        <h2 style={styles.h}>Your Time: {this.props.time}</h2>
+        <Button variant="outline-info"  onClick={() => this.props.startNewGame()}>
           Play Again!
-      </button>
+          </Button>{' '}
+      </Container>
       </div>
 
     )
   }
+  }
+}
+
+const styles = {
+  h: {
+    color: '#51068f'
   }
 }
 

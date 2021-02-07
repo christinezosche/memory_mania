@@ -57,12 +57,14 @@ const renderNewGames = (gameArray) => {
 
         <Container fluid style={styles.list}>
         <Row>
-            <Col>{renderTopGames(allGames)}</Col>
-            <Col>{renderNewGames(allGames)}</Col>
+            <Col></Col>
+            <Col xs={4}>{renderTopGames(allGames)}</Col>
+            <Col xs={4}>{renderNewGames(allGames)}</Col>
+            <Col></Col>
         </Row>
         <Row>
             <Col></Col>
-            <Col xs={8}>{renderAllGames(allGames)}</Col>
+            <Col xs={4}>{renderAllGames(allGames)}</Col>
             <Col></Col>
         </Row>
         </Container>

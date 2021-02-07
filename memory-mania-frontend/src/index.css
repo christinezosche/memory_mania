@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -21,7 +23,7 @@ code {
 
 .nav-bar {
   height: 30px;
-  background-color: #5c0ac7;
+  background-color: #51068f;
   font-family: Rockwell Extra Bold
 }
 
@@ -33,57 +35,57 @@ code {
 
 h1 {
   font-family: Rockwell Extra Bold;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 h2 {
   font-family: Rockwell;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 h3 {
   font-family: Rockwell;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 h4 {
   font-family: Rockwell;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 h5 {
   font-family: Rockwell;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 h6 {
   font-family: Rockwell;
-  color: teal;
+  color: rgb(36, 156, 192);
 }
 
 a:link {
   font-weight: bold;
-  color: #5c0ac7
+  color: #51068f
 
 }
 
 a:visited {
   
   font-weight: bold;
-  color: #5c0ac7
+  color: #51068f
 
 }
 
 a:hover {
 
   font-weight: bold;
-  color: #5c0ac7;
+  color: #51068f;
   text-decoration: none
 }
 
  .game-container {
   width: 1000px;
-  height: 475px;
+  height: 475px;  
   display: flex; 
   flex-wrap: wrap;
   align-items: center;
@@ -117,8 +119,6 @@ a:hover {
 }
 
  .card-front {
-  /* filter: grayscale(100%); */
-  transition-duration: 1s;
   box-shadow: 5px 5px 10px;
   box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
   
@@ -129,8 +129,7 @@ a:hover {
 }
 
 .card-back {
-  /* background-image: url("./assets/patterns/cork-wallet.png"); */
-
+  background-image: url("https://previews.123rf.com/images/karenr/karenr1602/karenr160200075/53466382-purple-and-white-question-mark-symbol-pattern-repeat-background-that-is-seamless-and-repeats.jpg");
   box-shadow: 5px 5px 10px;
   box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
 }

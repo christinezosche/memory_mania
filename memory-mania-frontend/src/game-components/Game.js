@@ -6,6 +6,8 @@ import Timer from './Timer'
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { setData, clearGameData, setGameName } from '../actions/games';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 
 class Game extends Component {
 
@@ -80,16 +82,30 @@ class Game extends Component {
     
     render () {
         if (this.state.newGame === true) {
-            return <div className="game-container"><GameStarter startGame={this.startGame} /></div>
+            return <div>
+                <Container className="game-container">
+                <Col xs={10}>
+                <GameStarter startGame={this.startGame} />
+                </Col>
+                </Container>
+                </div>
         }
         else if (this.props.gameComplete === true) {
-            return <div className="game-container"><GameEnder startNewGame={this.startNewGame} /></div>
+            return <div>
+                <Container className="game-container">
+                    <GameEnder startNewGame={this.startNewGame} />
+                </Container>
+                </div>
         }
         else {
         return (
         <div>
         <div className="timer"><Timer /></div>
-        <div className="game-container"><GameCards images={this.state.images} /></div>
+        <div>
+            <Container className="game-container">
+            <GameCards images={this.state.images} />
+            </Container>
+        </div>
         </div>
         )
         }

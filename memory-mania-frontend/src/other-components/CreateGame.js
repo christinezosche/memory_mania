@@ -5,6 +5,7 @@ import { addGameToStore, resetComplete } from '../actions/fetchGameData'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 class CreateGame extends Component {
 
@@ -75,20 +76,24 @@ class CreateGame extends Component {
                 <form onSubmit={this.handleSubmit}>
 
                 <Row>
-                <Col><h5><label style={styles.form}>Enter a name for this game:</label></h5>
+                <Col></Col>
+                <Col xs={4}><h5><label style={styles.form}>Enter a name for this game:</label></h5>
                 <input id="name" name="name" type="text" onChange={event => this.handleInputChange(event)} value={this.state.name} placeholder={`i.e., "Cats on Vacation"`} required /></Col>
                 <br></br>
-                <Col><h5><label style={styles.form}>Enter your name:</label></h5>
+                <Col xs={4}><h5><label style={styles.form}>Enter your name:</label></h5>
                 <input id="creator" name="creator" type="text" onChange={event => this.handleInputChange(event)} value={this.state.creator} placeholder={`i.e., "MemoryManiac1"`} required /></Col>
                 <br></br>
+                <Col></Col>
                 </Row>
                 <Row>
-                    
-                <Col><h5><label style={styles.form}>Enter image URLs:</label></h5>
+                <Col></Col>   
+                <Col xs={6}><h5><label style={styles.form}>Enter image URLs:</label></h5>
                 </Col>
+                <Col></Col>
                 </Row>
                 <Row>
-                <Col>
+                <Col></Col>   
+                <Col xs={2}>
                 <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image2" name="image2" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image2} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image3" name="image3" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image3} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
@@ -96,7 +101,7 @@ class CreateGame extends Component {
                 <input id="image5" name="image5" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image5} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image6" name="image6" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image6} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 </Col>
-                <Col>
+                <Col xs={2}>
                 <input id="image7" name="image7" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image7} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image8" name="image8" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image8} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image9" name="image9" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image9} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
@@ -104,10 +109,12 @@ class CreateGame extends Component {
                 <input id="image11" name="image11" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image11} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image12" name="image12" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image12} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 </Col>
+                <Col></Col> 
                 </Row>
                 <br></br>
                
-                <button type="submit">Submit</button>
+                <Button variant="outline-info" type="submit">Submit</Button>{' '}
+
 
                 </form>
                 {this.renderError()}

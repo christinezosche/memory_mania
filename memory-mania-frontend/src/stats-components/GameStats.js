@@ -16,9 +16,9 @@ class GameStats extends Component {
         <div className='list'>
         <h4 style={styles.h}>Top Stats</h4>
         <h6 style={styles.h}>All Games</h6>
-        <ol>
+        <ul>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
-        </ol>
+        </ul>
         </div>
         )
     }
@@ -35,9 +35,9 @@ class GameStats extends Component {
         return (
         <div className='list'>
         <h6 style={styles.h}>{gameName} Memory</h6>
-        <ol>
+        <ul>
         {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.time}</li>)}
-        </ol>
+        </ul>
         <br></br>
         </div>
         )

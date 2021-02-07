@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 
 class GifSearch extends React.Component {
 
@@ -20,11 +21,11 @@ class GifSearch extends React.Component {
     render () {
         return (
             <form onSubmit={this.handleSubmit}>
+            <br></br>
             <label>
-            <h3>Enter a theme: </h3>
-            <input id="searchTerm" name="searchTerm" type="text" onChange={event => this.handleInputChange(event)} value={this.state.searchTerm} placeholder={`i.e., "cats"`}/>
-            </label>
-            <button type="submit">Search</button>
+            <h6>Enter a theme: </h6><input id="searchTerm" name="searchTerm" type="text" onChange={event => this.handleInputChange(event)} value={this.state.searchTerm} placeholder={`i.e., "cats"`}/>
+            </label><br></br>
+            <Button variant="outline-info" type="submit">Search</Button>{' '}
             </form>
         )
     }

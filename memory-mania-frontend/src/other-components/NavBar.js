@@ -1,12 +1,13 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
- 
+import Container from 'react-bootstrap/Container';
+
 class NavBar extends React.Component {
   render() {
     return (
       <div>
-         <Navbar className="nav-bar">
+         <Navbar className="nav-bar" style={styles.bar}>
            <Nav>
           <Navbar.Brand href="/" style={styles.brand}>Memory Mania!</Navbar.Brand>
           </Nav>
@@ -23,6 +24,9 @@ class NavBar extends React.Component {
 }
 
 const styles = {
+  bar: {
+    width: '100vw'
+  },
   brand: {
   //   borderRadius: 55,
     padding: '1rem',
@@ -32,7 +36,7 @@ const styles = {
   },
   link: {
     textAlign: "center",
-    color: 'teal'
+    color: 'rgb(36, 156, 192)'
   }
 }
 export default NavBar;

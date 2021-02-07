@@ -84,7 +84,7 @@ class Menu extends Component {
 
     const styles = {
         card: {
-          backgroundColor: 'teal',
+          backgroundColor: 'rgb(36, 156, 192)',
           padding: '4rem',
           color: 'white'
         }

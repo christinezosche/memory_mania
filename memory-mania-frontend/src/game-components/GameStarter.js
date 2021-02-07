@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchGifs } from '../actions/fetchImages'
 import GifSearch from './GifSearch'
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class GameStarter extends Component {
 
@@ -36,10 +40,10 @@ class GameStarter extends Component {
       else {
         return (
         <div>
+  
         <h1>{this.props.name} Memory</h1>
-        <button className="start-button" onClick={() => this.props.startGame()}>
-          Start Game!
-        </button>
+        <Button variant="outline-info" onClick={() => this.props.startGame()}>Start Game!</Button>{' '}
+        
         </div>
         )
         } 
@@ -51,9 +55,7 @@ class GameStarter extends Component {
       return (
       <div>
       <h1>{this.props.name} Memory</h1>
-      <button className="start-button" onClick={() => this.props.startGame()}>
-          Start Game!
-      </button>
+      <Button variant="outline-info" onClick={() => this.props.startGame()}>Start Game!</Button>{' '}
       </div>
       )
     }

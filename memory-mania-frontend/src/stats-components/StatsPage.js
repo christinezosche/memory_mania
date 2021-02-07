@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class StatsPage extends Component {
 
@@ -63,10 +65,18 @@ class StatsPage extends Component {
         return (
         <div>
         <Container fluid style={styles.list}>
+       <Row>
+       <Col>  </Col>
+       <Col xs={6}>
+      
         <h1 style={styles.h}>Top Stats</h1>
+      
         <br></br>
         {this.renderBestTimeList()}
         {this.renderTopGameStats()}
+        </Col>
+        <Col></Col>
+        </Row>
         </Container>
         </div>
 
