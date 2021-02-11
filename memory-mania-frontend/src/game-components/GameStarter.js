@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { fetchGifs } from '../actions/fetchImages'
 import GifSearch from './GifSearch'
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 class GameStarter extends Component {
 
@@ -69,7 +66,8 @@ class GameStarter extends Component {
   }
 
   const mapDispatchToProps = dispatch => {
-    return { fetchGifs: (searchTerm) => dispatch(fetchGifs(searchTerm))
+    return { 
+      fetchGifs: (searchTerm) => dispatch(fetchGifs(searchTerm))
             }
   }
  

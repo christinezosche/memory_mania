@@ -17,7 +17,7 @@ class GameStats extends Component {
         <h4 style={styles.h}>Top Stats</h4>
         <h6 style={styles.h}>All Games</h6>
         <ul>
-        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
+        {shortArray.map(object => <li key={this.props.stats.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
         </ul>
         </div>
         )
@@ -33,10 +33,10 @@ class GameStats extends Component {
         let noAnonymous = filteredArray.filter(game => game.username !== '')
         let shortArray = noAnonymous.slice(0,5)
         return (
-        <div className='list'>
-        <h6 style={styles.h}>{gameName} Memory</h6>
+        <div className='list' key={gameName}>
+        <h6 style={styles.h} key={gameName}>{gameName} Memory</h6>
         <ul>
-        {shortArray.map(object => <li key={this.props.games.indexOf(object)}>{object.username} - {object.time}</li>)}
+        {shortArray.map(object => <li key={`${this.props.stats.indexOf(object)}${gameName}`}>{object.username} - {object.time}</li>)}
         </ul>
         <br></br>
         </div>
