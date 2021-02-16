@@ -2,6 +2,8 @@
 
 This app allows users to play various customizable memory games, including a GIPHY-powered game that includes gifs from a user's search criteria, a game featuring photos from the top stories on the New York Times homepage, and a game featuring photos from trending TV and movies, powered by The Movie Database. Users can also create their own games by entering image urls. Finally, stats are recorded on all games and displayed.
 
+For a demo, visit: https://youtu.be/jebYKNGKOo4
+
 ## Installation and Usage
 
 Fork and clone this repo. Cd into "memory-mania-backend". Run `bundle install` to install required gems. Run `rails db:migrate` to migrate tables, then run `rails db:seed` to seed the preloaded game templates. Run `rails s`. Be sure that the Rails server is running on http://localhost:3000.
