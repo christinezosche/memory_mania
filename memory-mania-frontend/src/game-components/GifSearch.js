@@ -3,9 +3,13 @@ import Button from 'react-bootstrap/Button';
 
 class GifSearch extends React.Component {
 
-    state = {
+    constructor() {
+        super()
+
+        this.state = {
         searchTerm: '' 
       };
+    }
 
     handleInputChange = event => {
         this.setState({

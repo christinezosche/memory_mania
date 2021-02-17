@@ -6,9 +6,13 @@ import Button from 'react-bootstrap/Button';
 
 class GameEnder extends Component {
 
-  state = {
+  constructor() {
+    super()
+
+    this.state = {
     statId: '',
     renderUsernamePopUp: true
+    }
   }
 
 addGame = () => {
