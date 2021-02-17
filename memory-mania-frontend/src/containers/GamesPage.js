@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import GamesList from '../other-components/GamesList';
-import GameShow from '../other-components/GameShow';
+import GameShow from './GameShow';
 import { connect } from 'react-redux';
 
 const GamesPage = (props) => (

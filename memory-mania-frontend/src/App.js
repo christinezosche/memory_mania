@@ -8,7 +8,7 @@ import GamesPage from './containers/GamesPage';
 import { fetchGameTemplatesData, fetchStats } from './actions/fetchGameData'
 import { connect } from 'react-redux'
 import StatsPage from './stats-components/StatsPage';
-import Home from './other-components/Home'
+import Home from './containers/Home'
 
 class App extends Component {
 

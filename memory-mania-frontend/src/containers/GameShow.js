@@ -1,5 +1,5 @@
 import React from 'react';
-import GameContainer from '../containers/GameContainer'
+import GameContainer from './GameContainer'
 import { connect } from 'react-redux';
 
 
