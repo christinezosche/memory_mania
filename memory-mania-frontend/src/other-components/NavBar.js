@@ -2,9 +2,9 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-class NavBar extends React.Component {
-  render() {
-    return (
+const NavBar = () => {
+
+  return (
       <div>
          <Navbar className="nav-bar" style={styles.bar}>
            <Nav>
@@ -19,7 +19,6 @@ class NavBar extends React.Component {
 
       </div>
     )
-  }
 }
 
 const styles = {
@@ -27,7 +26,6 @@ const styles = {
     width: '100vw'
   },
   brand: {
-  //   borderRadius: 55,
     padding: '1rem',
     textAlign: "left",
     color: 'white'

@@ -1,24 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 
 
-class Menu extends Component {
+const Menu = () => {
     
-    renderFeaturedGames = () => {
-        let array = [...this.props.games]
-        let shortArray = array.slice(0,4)
-        return (
-        <div>
-        <h1>Memory Mania!</h1>
-        {shortArray.map(object => <h2 key={this.props.games.indexOf(object)}><Link to={`/games/${this.props.games.indexOf(object)}`} >{object.name} Memory</Link></h2>)}
-        </div>
-        )
-    }
-
-    render () {
         return (
             <div>
             <div>
@@ -79,7 +67,7 @@ class Menu extends Component {
         </div>
         </div>
         )
-        }
+
     }
 
     const styles = {
