@@ -9,8 +9,12 @@ class StatsPage extends Component {
     renderBestTimeList = () => {
         let array = [...this.props.stats]
         array.sort((a, b) => {
-            return a.time - b.time
-          });
+          if (parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]) === 0) {
+              return parseInt(a.time.split(":")[1]) - parseInt(b.time.split(":")[1]);
+          } else {
+              return parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]);
+          }
+        })
         let shortArray = array.slice(0,25)
         return (
         <div>
@@ -27,8 +31,12 @@ class StatsPage extends Component {
         let array = [...this.props.stats]
         let filteredArray = array.filter(stat => stat.name === gameName) 
         filteredArray.sort((a, b) => {
-            return a.time - b.time
-          });
+          if (parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]) === 0) {
+              return parseInt(a.time.split(":")[1]) - parseInt(b.time.split(":")[1]);
+          } else {
+              return parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]);
+          }
+        })
         let shortArray = filteredArray.slice(0,25)
         return (
         <div>

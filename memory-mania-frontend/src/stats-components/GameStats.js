@@ -8,8 +8,12 @@ class GameStats extends Component {
     renderBestTimeList = () => {
         let array = [...this.props.stats]
         array.sort((a, b) => {
-            return a.time - b.time
-          });
+          if (parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]) === 0) {
+              return parseInt(a.time.split(":")[1]) - parseInt(b.time.split(":")[1]);
+          } else {
+              return parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]);
+          }
+        })
         let noAnonymous = array.filter(game => game.username !== '')
         let shortArray = noAnonymous.slice(0,5)
         return (
@@ -28,8 +32,12 @@ class GameStats extends Component {
         let array = [...this.props.stats]
         let filteredArray = array.filter(stat => stat.name === gameName) 
         filteredArray.sort((a, b) => {
-            return a.time - b.time
-          });
+          if (parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]) === 0) {
+              return parseInt(a.time.split(":")[1]) - parseInt(b.time.split(":")[1]);
+          } else {
+              return parseInt(a.time.split(":")[0]) - parseInt(b.time.split(":")[0]);
+          }
+        })
         let noAnonymous = filteredArray.filter(game => game.username !== '')
         let shortArray = noAnonymous.slice(0,5)
         return (

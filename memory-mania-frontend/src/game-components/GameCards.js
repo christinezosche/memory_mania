@@ -39,22 +39,9 @@ class GameCards extends Component {
     }
 
     renderGame = () => {
-        // if (this.props.gameComplete === true) {
-        //     return <div className="game-container">{this.renderEnd()}</div>        
-        // }
-        // else {
             return <div className="game-container">{this.renderCards()}</div>
-        // }
     }
 
-    // renderEnd = () => {
-    //     return (
-    //     <div>
-    //     <h1>Game Over!</h1>
-    //     <h2>Your Time: {this.props.time}</h2>
-    //     </div>
-    //     )
-    // }
 
     renderCards = () => {
         return this.props.images.map((image) => <GameCard key={image.id} imageUrl={image.url} imageId={image.imageId} />)
