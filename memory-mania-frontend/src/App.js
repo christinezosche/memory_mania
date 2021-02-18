@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter as Router,
+import { BrowserRouter as Router, Switch,
   Route } from 'react-router-dom'
 import CreateGame from './other-components/CreateGame';
 import NavBar from './other-components/NavBar';
@@ -23,10 +23,12 @@ class App extends Component {
       <Router>
       <div>
             <NavBar />
+            <Switch>
             <Route exact path={"/"} component={Home} />
-            <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/games/new"} component={CreateGame} />
+            <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
             <Route exact path={"/stats"} component={StatsPage} />
+            </Switch>
       </div>
       </Router>
     </div>
