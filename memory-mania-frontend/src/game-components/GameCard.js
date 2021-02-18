@@ -27,7 +27,7 @@ class GameCard extends Component {
             return <div className="game-card"><CardBack /></div>
         }
         else {
-            return <div className="game-card" onClick={() => this.toggleClick()}><CardBack /></div>
+            return <div className="game-card" onClick={this.toggleClick}><CardBack /></div>
         }
     }
 

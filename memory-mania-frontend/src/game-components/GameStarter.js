@@ -39,7 +39,7 @@ class GameStarter extends Component {
         <div>
   
         <h1>{this.props.name} Memory</h1>
-        <Button variant="outline-info" onClick={() => this.props.startGame()}>Start Game!</Button>{' '}
+        <Button variant="outline-info" onClick={this.props.startGame}>Start Game!</Button>{' '}
         
         </div>
         )
