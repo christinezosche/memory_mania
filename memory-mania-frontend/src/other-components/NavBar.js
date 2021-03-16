@@ -1,9 +1,23 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-const NavBar = () => {
+class NavBar extends Component {
 
+    // constructor () {
+    //   super() 
+    //   this.state = {
+    //     colorMode: true
+    //   }
+    // }
+
+    // handleClick = () => {
+  
+    //   this.props.changeMode()
+    // }
+
+
+  render() {
   return (
       <div>
          <Navbar className="nav-bar" style={styles.bar}>
@@ -15,10 +29,12 @@ const NavBar = () => {
             <Nav.Link href="/games" style={styles.link}>Games</Nav.Link>
             <Nav.Link href="/stats" style={styles.link}>Stats</Nav.Link>
             </Nav>
+          {/* <button onClick={this.handleClick}>Switch Color Mode</button> */}
           </Navbar> 
 
       </div>
     )
+  }
 }
 
 const styles = {

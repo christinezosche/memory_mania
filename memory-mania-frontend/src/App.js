@@ -12,16 +12,33 @@ import Home from './containers/Home'
 
 class App extends Component {
 
+  // constructor () {
+  //   super() 
+  //   this.state = {
+  //     colorMode: true
+  //   }
+  // }
+
+  // changeMode = () => {
+  //   this.setState(previousState => {
+  //     return {
+  //       colorMode: !previousState.colorMode
+  //     }
+  //     })
+  // }
+
   componentDidMount() {
     this.props.fetchGameTemplatesData()
     this.props.fetchStats()
   }
 
   render() {
+  // if (this.state.colorMode === true) {
   return (
     <div className="App">
       <Router>
       <div>
+            {/* <NavBar changeMode={this.changeMode}/> */}
             <NavBar />
             <Switch>
             <Route exact path={"/"} component={Home} />
@@ -32,7 +49,25 @@ class App extends Component {
       </div>
       </Router>
     </div>
-  );
+  )
+  /* }
+  else {
+    return (
+    <div className="darkApp">
+      <Router>
+      <div>
+            <NavBar changeMode={this.changeMode}/>
+            <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/games/new"} component={CreateGame} />
+            <Route path='/games' render={routerProps => <GamesPage {...routerProps} />} />
+            <Route exact path={"/stats"} component={StatsPage} />
+            </Switch>
+      </div>
+      </Router>
+    </div>
+    )
+  } */
 }
 }
 

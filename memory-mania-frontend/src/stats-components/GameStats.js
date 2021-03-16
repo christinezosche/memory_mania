@@ -21,7 +21,7 @@ class GameStats extends Component {
         <h4 style={styles.h}>Top Stats</h4>
         <h6 style={styles.h}>All Games</h6>
         <ul>
-        {shortArray.map(object => <li key={this.props.stats.indexOf(object)}>{object.username} - {object.name} Memory - {object.time}</li>)}
+        {shortArray.map(object => <li key={this.props.stats.indexOf(object)}>{object.username} - {object.name} - {object.time}</li>)}
         </ul>
         </div>
         )

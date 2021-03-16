@@ -7,6 +7,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  color: black;
+  background-color: white
+}
+
+.darkApp {
+  color: white;
+  background-color: black
+}
+
 
 
 code {
