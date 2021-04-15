@@ -37,7 +37,7 @@ class CreateGame extends Component {
         let gameData = {
             "name": this.state.name,
             "creator": this.state.creator,
-            "imageUrls": [this.state.image1, this.state.image2, this.state.image3, this.state.image4, this.state.image5, this.state.image6, this.state.image7, this.state.image8, this.state.image9, this.state.image10, this.state.image11, this.state.image12]
+            "imageUrls": [this.state.images['image1'], this.state.images['image2'], this.state.images['image3'], this.state.images['image4'], this.state.images['image5'], this.state.images['image6'], this.state.images['image7'], this.state.images['image8'], this.state.images['image9'], this.state.images['image10'], this.state.images['image11'], this.state.images['image12']]
         };
    
        let configObj = {
@@ -49,20 +49,15 @@ class CreateGame extends Component {
                 body: JSON.stringify(gameData)
               };
         
-        if (this.checkObjects() === true) {
+        if (this.checkUrls() === true) {
         this.props.addGameToStore(configObj)
         }
 
     event.preventDefault()
     }
 
-    checkObjects = () => {
-        if (Object.values(this.state.images).includes('')) {
-            return true 
-        }
-        else {
-            return false
-        }
+    checkUrls = () => {
+        return Object.values(this.state.images).every(this.checkIfValid)
     }
 
     handleInputChange = event => {
@@ -77,10 +72,20 @@ class CreateGame extends Component {
         }
     }
 
-    setImage = (imageId, url) => {
+    handleUrlChange = (event) => {
         this.setState({
-            [imageId]: url
+            ...this.state,
+            images: { ...this.state.images, [event.target.name]: event.target.value} 
         })
+    }
+
+    checkIfValid = (string) => {
+        if (string.substring(0,8) === "https://" || string.substring(0,7) === "http://") {
+           return true
+        }
+        else {
+            return false
+        }
     }
 
     resetComplete = () => {
@@ -88,7 +93,6 @@ class CreateGame extends Component {
     }
 
     render () {
-        debugger
         if (this.props.successfulSubmit === false) {
         return (
             <div>
@@ -117,23 +121,33 @@ class CreateGame extends Component {
                 <Col xs={2}>
 
 
-                {/* <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} 
-                placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br> */}
-                <Input image={'image1'} setImage={this.setImage} />
-
-                <input id="image2" name="image2" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image2} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image3" name="image3" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image3} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image4" name="image4" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image4} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image5" name="image5" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image5} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image6" name="image6" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image6} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+                <input id="image1" name="image1" type="url" className={`input ${this.checkIfValid(this.state.images['image1']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image1']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image2" name="image2" type="url" className={`input ${this.checkIfValid(this.state.images['image2']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image2']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image3" name="image3" type="url" className={`input ${this.checkIfValid(this.state.images['image3']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image3']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image4" name="image4" type="url" className={`input ${this.checkIfValid(this.state.images['image4']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image4']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image5" name="image5" type="url" className={`input ${this.checkIfValid(this.state.images['image5']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image5']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image6" name="image6" type="url" className={`input ${this.checkIfValid(this.state.images['image6']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image6']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
                 </Col>
                 <Col xs={2}>
-                <input id="image7" name="image7" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image7} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image8" name="image8" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image8} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image9" name="image9" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image9} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image10" name="image10" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image10} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image11" name="image11" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image11} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
-                <input id="image12" name="image12" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image12} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+
+                <input id="image7" name="image7" type="url" className={`input ${this.checkIfValid(this.state.images['image7']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image7']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image8" name="image8" type="url" className={`input ${this.checkIfValid(this.state.images['image8']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image8']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image9" name="image9" type="url" className={`input ${this.checkIfValid(this.state.images['image9']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image9']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image10" name="image10" type="url" className={`input ${this.checkIfValid(this.state.images['image10']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image10']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image11" name="image11" type="url" className={`input ${this.checkIfValid(this.state.images['image11']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image11']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
+                <input id="image12" name="image12" type="url" className={`input ${this.checkIfValid(this.state.images['image12']) ? "valid" : "invalid"}`} onChange={event => this.handleUrlChange(event)} value={this.state.images['image12']} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} /><br></br>
                 </Col>
                 <Col></Col> 
                 </Row>

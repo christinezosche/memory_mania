@@ -17,18 +17,26 @@ class Input extends Component {
     }
 
     checkIfValid = () => {
-        if (this.state.url.substring(0,8) !== "https://" || this.state.url.substring(0,7) !== "http://") {
-           return false
+        if (this.state.url.substring(0,8) === "https://" || this.state.url.substring(0,7) === "http://") {
+           return true
         }
         else {
-            return true
+            return false
         }
     }
 
-    render () {
+    sendData = () => {
         if (this.checkIfValid() === true) {
             this.props.setImage(this.state.image, this.state.url)
         }
+        else {
+
+        }
+    }
+    
+
+    render () {
+        this.sendData()
         return (
             <input id={this.state.image} name={this.state.image} type="url" className={`input ${this.checkIfValid() ? "valid" : "invalid"}`}
             onChange={event => this.handleInputChange(event)} 
