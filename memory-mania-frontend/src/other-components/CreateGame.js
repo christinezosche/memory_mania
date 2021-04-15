@@ -49,7 +49,7 @@ class CreateGame extends Component {
                 body: JSON.stringify(gameData)
               };
         
-        if (this.state.valid === true) {
+        if (this.checkObjects() === true) {
         this.props.addGameToStore(configObj)
         }
 
@@ -58,7 +58,8 @@ class CreateGame extends Component {
 
     checkObjects = () => {
         if (Object.values(this.state.images).includes('')) {
-            return true }
+            return true 
+        }
         else {
             return false
         }
