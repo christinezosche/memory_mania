@@ -144,3 +144,9 @@ a:hover {
   box-shadow: 5px 5px 10px rgb(55, 55, 55, 0.85);
 }
 
+
+
+.input:invalid {
+  border: 3px solid red;
+}
+

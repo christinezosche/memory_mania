@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Input from './Input'
 
 class CreateGame extends Component {
 
@@ -14,18 +15,20 @@ class CreateGame extends Component {
         this.state = {
             name: '',
             creator: '',
-            image1: '',
-            image2: '',
-            image3: '',
-            image4: '',
-            image5: '',
-            image6: '',
-            image7: '',
-            image8: '',
-            image9: '',
-            image10: '',
-            image11: '',
-            image12: ''
+            images: [
+            {image1: ''},
+            {image2: ''},
+            {image3: ''},
+            {image4: ''},
+            {image5: ''},
+            {image6: ''},
+            {image7: ''},
+            {image8: ''},
+            {image9: ''},
+            {image10: ''},
+            {image11: ''},
+            {image12: ''}
+            ]       
         }
 
     }
@@ -45,9 +48,16 @@ class CreateGame extends Component {
                 },
                 body: JSON.stringify(gameData)
               };
+        
+        if (this.state.valid === true) {
         this.props.addGameToStore(configObj)
+        }
 
     event.preventDefault()
+    }
+
+    checkObjects = () => {
+        return Object.entries(this.state)
     }
 
     handleInputChange = event => {
@@ -56,10 +66,25 @@ class CreateGame extends Component {
         })
     }
 
+    checkIfValid = () => {
+       if (this.state.image1 === '') {
+           return false
+       }
+       else {
+           return true
+       }
+    }
+
     renderError = () => {
         if (this.props.error === true) {
             return <h5 style={styles.error}>Name already taken. Choose another name.</h5>
         }
+    }
+
+    setImage = (imageId, url) => {
+        this.setState({
+            [imageId]: url
+        })
     }
 
     resetComplete = () => {
@@ -67,7 +92,7 @@ class CreateGame extends Component {
     }
 
     render () {
-
+        debugger
         if (this.props.successfulSubmit === false) {
         return (
             <div>
@@ -94,7 +119,12 @@ class CreateGame extends Component {
                 <Row>
                 <Col></Col>   
                 <Col xs={2}>
-                <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
+
+
+                {/* <input id="image1" name="image1" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image1} 
+                placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br> */}
+                <Input image={'image1'} setImage={this.setImage} />
+
                 <input id="image2" name="image2" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image2} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image3" name="image3" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image3} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
                 <input id="image4" name="image4" type="url" onChange={event => this.handleInputChange(event)} value={this.state.image4} placeholder={`i.e., "https://myimage.com/image.jpg"`} required /><br></br>
