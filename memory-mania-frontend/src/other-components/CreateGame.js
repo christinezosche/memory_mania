@@ -70,15 +70,6 @@ class CreateGame extends Component {
         })
     }
 
-    checkIfValid = () => {
-       if (this.state.image1 === '') {
-           return false
-       }
-       else {
-           return true
-       }
-    }
-
     renderError = () => {
         if (this.props.error === true) {
             return <h5 style={styles.error}>Name already taken. Choose another name.</h5>
