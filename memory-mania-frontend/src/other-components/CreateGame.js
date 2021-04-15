@@ -15,20 +15,20 @@ class CreateGame extends Component {
         this.state = {
             name: '',
             creator: '',
-            images: [
-            {image1: ''},
-            {image2: ''},
-            {image3: ''},
-            {image4: ''},
-            {image5: ''},
-            {image6: ''},
-            {image7: ''},
-            {image8: ''},
-            {image9: ''},
-            {image10: ''},
-            {image11: ''},
-            {image12: ''}
-            ]       
+            images: {
+            image1: '',
+            image2: '',
+            image3: '',
+            image4: '',
+            image5: '',
+            image6: '',
+            image7: '',
+            image8: '',
+            image9: '',
+            image10: '',
+            image11: '',
+            image12: ''
+            }       
         }
 
     }
@@ -57,7 +57,11 @@ class CreateGame extends Component {
     }
 
     checkObjects = () => {
-        return Object.entries(this.state)
+        if (Object.values(this.state.images).includes('')) {
+            return true }
+        else {
+            return false
+        }
     }
 
     handleInputChange = event => {
